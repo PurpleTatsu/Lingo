@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vocab: MyString
+  vocab2: MyString
+  vocab3: MyString
+  description: MyText
+
+two:
+  vocab: MyString
+  vocab2: MyString
+  vocab3: MyString
+  description: MyText

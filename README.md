@@ -27,8 +27,8 @@ Click-and-drag vocab
 ![ERD](https://github.com/PurpleTatsu/GA-Project-4/blob/master/P4.png)
 
 ## Wireframes 
-![Home](https://github.com/PurpleTatsu/GA-Project-4/blob/master/langhome.png?raw=true)
-![Vocab](https://github.com/PurpleTatsu/GA-Project-4/blob/master/media%20wireframe.png)
+![Home](https://github.com/PurpleTatsu/P4-Flashcards/blob/master/client/src/images/langhome.png?raw=true)
+![Vocab](https://github.com/PurpleTatsu/P4-Flashcards/blob/master/client/src/images/media%20wireframe.png?raw=true)
 
 ## API Endpoint Documentations
 

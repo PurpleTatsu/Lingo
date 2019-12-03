@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Vehicle.create!(title: "Heart Signal", image: "https://pbs.twimg.com/media/EEC-R_mXoAM5yhb.jpg", genre: "variety", language: "Chinese, Mandarin")
+Vehicle.create!(title: "My Hero Academia", image: "https://images-na.ssl-images-amazon.com/images/I/91kjVOEopVL._SL1500_.jpg", genre: "anime, action", language: "Japanese")
+
+
+
+puts "#{Vehicle.count} media created!"

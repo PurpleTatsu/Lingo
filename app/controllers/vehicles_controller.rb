@@ -1,5 +1,6 @@
 class VehiclesController < ApplicationController
-  before_action :set_vehicle, only: [:show, :update, :destroy]
+  before_action :set_comment, only: [:show, :update, :destroy]
+  before_action :authorize_request, except: %i[index show]
 
   # GET /vehicles
   def index
@@ -17,7 +18,7 @@ class VehiclesController < ApplicationController
   def create
     @vehicle = Vehicle.new(vehicle_params)
 
-    if @vehicle.save
+    if @current_user.vehicles << @vehicle
       render json: @vehicle, status: :created, location: @vehicle
     else
       render json: @vehicle.errors, status: :unprocessable_entity
@@ -26,16 +27,24 @@ class VehiclesController < ApplicationController
 
   # PATCH/PUT /vehicles/1
   def update
-    if @vehicle.update(vehicle_params)
-      render json: @vehicle
+    if @vehicle.user == @current_user
+      if @vehicle.update(vehicle_params)
+        render json: @vehicle
+      else
+        render json: @vehicle.errors, status: :unprocessable_entity
+      end
     else
-      render json: @vehicle.errors, status: :unprocessable_entity
+    render json: { errors: "not authorized" }, status: :unauthorized
     end
   end
 
   # DELETE /vehicles/1
   def destroy
-    @vehicle.destroy
+    if @vehicle.user == @current_user
+      @vehicle.destroy
+  else
+    render json: { errors: "not authorized" }, status: :unauthorized
+  end
   end
 
   private

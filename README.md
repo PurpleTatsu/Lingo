@@ -1,24 +1,54 @@
-# README
+# GA-Project-4
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## Project Description
+Users can create vocabulary lists for different media they are following: books, tv, movies. They can also add notes and write example sentences. A form will be available in the React frontend for users to create, edit, and delete media and vocab. A Rails backend will save the data.
 
-* Ruby version
+An explanation of the major challenges you expect to face while building this app.
+A section clearly defining MVP and POST MVP.
 
-* System dependencies
+**MVP**
 
-* Configuration
+User Auth(Login/Register)
 
-* Database creation
+User creates a Media form
 
-* Database initialization
+User adds, edits, and deletes vocab from Media
 
-* How to run the test suite
+**POST MVP**
 
-* Services (job queues, cache servers, search engines, etc.)
+VoiceRSS text-to-voice API call to aid pronunciation 
 
-* Deployment instructions
+Search bar
 
-* ...
+Click-and-drag vocab
+
+## Entity Relationship Diagram (ERD) 
+![ERD](https://github.com/PurpleTatsu/GA-Project-4/blob/master/P4.png)
+
+## Wireframes 
+![Home](https://github.com/PurpleTatsu/GA-Project-4/blob/master/langhome.png?raw=true)
+![Vocab](https://github.com/PurpleTatsu/GA-Project-4/blob/master/media%20wireframe.png)
+
+## API Endpoint Documentations
+
+/auth/register	*for User registration*
+
+/auth/login	*for User login*
+
+/auth/verify	*for User verification*
+
+/media/:mediaId/ *for Media - Read Index and Create*
+
+/media/:mediaId/vocab	*for Vocab - Read Index and Create*
+
+/media/:mediaId/vocab/:vocabId	*for Vocab - Read Show, Update, and Delete*
+
+
+
+| Component     | Priority| Estimated Time  | Time Invetsted  |Actual Time |
+| ------------- |:-------------:| -----:| -----:| -----:|
+| Adding form for Vocab| H |3.5hrs  |  |  |
+| Auth| H | 6hrs   |  |  |
+| Adding form for media| H     | 3.5hrs    |  |  |
+| Design| M     | 4hrs    |  |  |

@@ -8,7 +8,7 @@ import CreateVehicle from './components/CreateVehicle'
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm'
 import Header from './components/Header'
-import { createVehicle, createFlashcard, readAllVehicles, updateVehicle, destroyVehicle, loginUser, registerUser, verifyUser } from './services/api-helper'
+import { createVehicle, readAllVehicles, updateVehicle, destroyVehicle, loginUser, registerUser, verifyUser } from './services/api-helper'
 import './App.css';
 
 
@@ -66,18 +66,18 @@ class App extends Component {
   // };
 
   newVehicle = async userId => {
-    const flashcard = await createVehicle(userId, this.state.vehicleForm);
+    const vehicle = await createVehicle(userId, this.state.vehicleForm);
     this.setState(prevState => ({
-      vehicles: [...prevState.vehicles, flashcard]
+      vehicles: [...prevState.vehicles, vehicle]
     }));
     this.props.history.push("/");
   };
 
   // newVehicle = async () => {
   //   debugger;
-  //   const flashcard = await createVehicle(this.state.vehicleForm);
+  //   const vehicle = await createVehicle(this.state.vehicleForm);
   //   this.setState(prevState => ({
-  //     vehicles: [...prevState.vehicles, flashcard],
+  //     vehicles: [...prevState.vehicles, vehicle],
   //     vehicleForm: {
   //       title: "",
   //       image: "",
@@ -101,9 +101,9 @@ class App extends Component {
 
   mountEditForm = async (id) => {
     const vehicles = await readAllVehicles();
-    const flashcard = vehicles.find(el => el.id === parseInt(id));
+    const vehicle = vehicles.find(el => el.id === parseInt(id));
     this.setState({
-      vehicleForm: flashcard
+      vehicleForm: vehicle
     });
   }
 
@@ -123,8 +123,8 @@ class App extends Component {
     await updateVehicle(vehicleForm.id, vehicleForm);
     this.setState(prevState => (
       {
-        vehicles: prevState.vehicles.map(flashcard => {
-          return flashcard.id === vehicleForm.id ? vehicleForm : flashcard
+        vehicles: prevState.vehicles.map(vehicle => {
+          return vehicle.id === vehicleForm.id ? vehicleForm : vehicle
         }),
       }
     ))
@@ -134,18 +134,11 @@ class App extends Component {
   deleteVehicle = async (id) => {
     await destroyVehicle(id);
     this.setState(prevState => ({
-      vehicles: prevState.vehicles.filter(flashcard => flashcard.id !== id)
+      vehicles: prevState.vehicles.filter(vehicle => vehicle.id !== id)
     }))
   }
 
-// create Flashcard
-  newFlashcard = async userId => {
-    const flashcard = await createFlashcard(userId, this.state.flashcardForm);
-    this.setState(prevState => ({
-      flashcards: [...prevState.flashcards, flashcard]
-    }));
-    this.props.history.push("/");
-  };
+
   // -------------- AUTH ------------------
 
   handleLoginButton = () => {
@@ -179,7 +172,6 @@ class App extends Component {
       }
     }));
   }
-  //-------------------//
 
   render() {
     return (
@@ -211,7 +203,7 @@ class App extends Component {
           )}
         />
         <Route
-          path="/new/flashcard"
+          path="/new/vehicle"
           render={() => (
             <CreateVehicle
               handleFormChange={this.handleFormChange}
@@ -224,18 +216,16 @@ class App extends Component {
           path="/vehicles/:id"
           render={(props) => {
             const { id } = props.match.params;
-            const flashcard = this.state.vehicles.find(el => el.id === parseInt(id));
+            const vehicle = this.state.vehicles.find(el => el.id === parseInt(id));
             return <VehiclePage
               id={id}
-              flashcard={flashcard}
+              vehicle={vehicle}
               handleFormChange={this.handleFormChange}
               mountEditForm={this.mountEditForm}
               editVehicle={this.editVehicle}
               vehicleForm={this.state.vehicleForm}
               deleteVehicle={this.deleteVehicle}
-              // flashcardForm={this.state.flashcardForm}
-              // newFlashcard={this.newFlashcard}
-              currentUser={this.state.currentUser}/>
+            />
           }}
         />
       </div>

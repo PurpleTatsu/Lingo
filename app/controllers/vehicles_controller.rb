@@ -1,5 +1,5 @@
 class VehiclesController < ApplicationController
-  before_action :set_comment, only: [:show, :update, :destroy]
+  before_action :set_vehicle, only: [:show, :update, :destroy]
   before_action :authorize_request, except: %i[index show]
 
   # GET /vehicles
@@ -57,4 +57,5 @@ class VehiclesController < ApplicationController
     def vehicle_params
       params.require(:vehicle).permit(:title, :image, :language, :genre)
     end
+  
 end

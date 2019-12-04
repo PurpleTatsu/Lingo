@@ -1,3 +1,25 @@
 header{
   background: gray;
 }
+
+/* <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a> */
+
+
+.vehicle-card{
+  width: 400px;
+  text-align: center;
+  margin: 0 auto;
+}
+.vehicle-card img{
+  text-align: center;
+  width: 300px;
+}
+
+.add-new-vehicle, .plus-sign{
+  text-align: center;
+  width: 100px;
+}
+
+.vehicle-page img{
+  width: 300px;
+}

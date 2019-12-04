@@ -5,9 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Vehicle.create!(title: "Heart Signal", image: "https://pbs.twimg.com/media/EEC-R_mXoAM5yhb.jpg", genre: "variety", language: "Chinese, Mandarin")
-Vehicle.create!(title: "My Hero Academia", image: "https://images-na.ssl-images-amazon.com/images/I/91kjVOEopVL._SL1500_.jpg", genre: "anime, action", language: "Japanese")
+
+User.create!(username: 'Katie', password: '123456', email: 'katiepgray@gmail.com')
 
 
+Vehicle.create!(title: "Heart Signal", image: "https://pbs.twimg.com/media/EEC-R_mXoAM5yhb.jpg", genre: "variety", language: "Chinese, Mandarin", user_id: 1)
+Vehicle.create!(title: "My Hero Academia", image: "https://images-na.ssl-images-amazon.com/images/I/91kjVOEopVL._SL1500_.jpg", genre: "anime, action", language: "Japanese", user_id: 1)
 
-puts "#{Vehicle.count} media created!"
+# Flashcard.create!(vocab:"hi", vocab2: "hi", vocab3: "hi", description: "this is a test")
+
+# puts "#{Vehicle.count} media created!"

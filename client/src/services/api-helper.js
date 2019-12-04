@@ -30,22 +30,29 @@ export const verifyUser = async () => {
   return false
 }
 
-// export const createTeacher = async (data) => {
-//   const resp = await api.post('/teachers', { teacher: data })
-//   return resp.data
-// }
+//adding new media
+export const createVehicle = async (userId, data) => {
+  const resp = await api.post('/vehicles', { vehicle: data })
+  return resp.data
+}
 
-// export const readAllTeachers = async () => {
-//   const resp = await api.get('/teachers')
-//   return resp.data
-// }
+export const readAllVehicles = async () => {
+  const resp = await api.get('/vehicles')
+  return resp.data
+}
 
-// export const updateTeacher = async (id, data) => {
-//   const resp = await api.put(`/teachers/${id}`, { teacher: data })
-//   return resp.data
-// }
+export const updateVehicle = async (id, data) => {
+  const resp = await api.put(`/vehicles/${id}`, { vehicle: data })
+  return resp.data
+}
 
-// export const destroyTeacher = async (id) => {
-//   const resp = await api.delete(`/teachers/${id}`)
-//   return resp.data
-// }
+export const destroyVehicle = async (id) => {
+  const resp = await api.delete(`/vehicles/${id}`)
+  return resp.data
+}
+
+//adding new flashcards
+export const createFlashcard = async (userId, data) => {
+  const resp = await api.post('/flashcards', { flashcard: data })
+  return resp.data
+}

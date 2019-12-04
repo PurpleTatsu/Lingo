@@ -52,7 +52,12 @@ export const destroyVehicle = async (id) => {
 }
 
 //adding new flashcards
-// export const createFlashcard = async (userId, data) => {
-//   const resp = await api.post('/flashcards', { flashcard: data })
-//   return resp.data
-// }
+export const createFlashcard = async (vehicleId, data) => {
+  const resp = await api.post('/flashcards', { flashcard: data })
+  return resp.data
+}
+
+export const readAllFlashcards = async () => {
+  const resp = await api.get('/flashcards')
+  return resp.data
+}

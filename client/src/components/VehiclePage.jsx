@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EditVehicle from './EditVehicle'
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 class VehiclesPage extends Component {
@@ -16,7 +16,8 @@ class VehiclesPage extends Component {
   }
 
   render() {
-    const { vehicle } = this.props;
+    const { vehicle, flashcards } = this.props;
+
     return (
       <div>
         {vehicle === undefined ? <h2>Loading . . .</h2> : (
@@ -50,6 +51,34 @@ class VehiclesPage extends Component {
               </>
             }
           </div>)}
+          
+        <div className="flashcard-page">
+          <button
+            onClick={() => {
+              this.props.history.push(`/vehicles/${vehicle.id}/flashcard/new`);
+              window.scrollTo(0, 0);
+            }}>Add flashcard</button>
+
+
+          {
+            flashcards.map(flashcard => (
+
+              <div
+                key={this.props.flashcard.id}
+                className="flashcard-card"
+                onClick={(e) => {
+                  this.props.history.push(`/flashcards/${flashcard.id}`);
+                  window.scrollTo(0, 0);
+                }}>
+
+                <h3>{this.props.flashcard.vocab}</h3>
+                <h3>{this.props.flashcard.vocab2}</h3>
+                <h3>{this.props.flashcard.vocab3}</h3>
+                <h3>{this.props.flashcard.description}</h3>
+
+              </div>
+            ))}
+        </div>
       </div>)
   }
 }

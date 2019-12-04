@@ -1,7 +1,13 @@
 header{
   background: gray;
+  height: 80px;
+  display: flex;
 }
+.vehicle-container{
+  background: url("file:///Users/Tatsu/SEI/project-4/p4-media-flashcards/p4flashcards-api/client/src/images/hero-image.jpg");
+  height: 80vh;
 
+}
 /* <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a> */
 
 

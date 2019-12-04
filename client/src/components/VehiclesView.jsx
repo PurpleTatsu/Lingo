@@ -6,7 +6,7 @@ function VehiclesView(props) {
   return (
 
     <div className="vehicle-container">
-
+      <img className="hero-image" src="https://github.com/PurpleTatsu/P4-Flashcards/blob/master/client/src/images/hero-image.jpg?raw=true" />
       {
         props.vehicles.map(vehicle => (
 

@@ -9,7 +9,6 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm'
 import Header from './components/Header'
 import { createVehicle, readAllVehicles, updateVehicle, destroyVehicle, loginUser, registerUser, verifyUser } from './services/api-helper'
-import { createFlashcard, readAllFlashcards } from './services/api-helper'
 
 import './App.css';
 
@@ -31,13 +30,7 @@ class App extends Component {
         email: "",
         password: "",
       },
-      flashcards: [],
-      flashcardForm: {
-        vocab: "",
-        vocab2: "",
-        vocab3: "",
-        description: "",
-      },
+     
     };
   }
 
@@ -49,13 +42,7 @@ class App extends Component {
     }
   }
 
-  async flashcardDidMount() {
-    this.getFlashcards();
-    const currentUser = await verifyUser();
-    if (currentUser) {
-      this.setState({ currentUser })
-    }
-  }
+ 
 
 
   /////// READ ///////
@@ -66,12 +53,7 @@ class App extends Component {
     })
   }
 
-  getFlashcards = async () => {
-    const flashcards = await readAllFlashcards();
-    this.setState({
-      flashcards
-    })
-  }
+ 
 
 
   /////// CREATE ///////
@@ -91,13 +73,7 @@ class App extends Component {
     this.props.history.push("/");
   };
 
-  newFlashcard = async vehicleId => {
-    const flashcard = await createFlashcard(vehicleId, this.state.flashcardForm);
-    this.setState(prevState => ({
-      flashcards: [...prevState.flashcards, flashcard]
-    }));
-    this.props.history.push("/");
-  };
+ 
 
   /////// UPDATE ///////
   handleFormChange = (e) => {
@@ -113,12 +89,9 @@ class App extends Component {
 
   mountEditForm = async (id) => {
     const vehicles = await readAllVehicles();
-    const flashcards = await readAllFlashcards();
     const vehicle = vehicles.find(el => el.id === parseInt(id));
-    const flashcard = flashcards.find(el => el.id === parseInt(id));
     this.setState({
       vehicleForm: vehicle,
-      flashcardForm: flashcard,
     });
   }
 

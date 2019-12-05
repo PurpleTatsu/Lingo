@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function Header(props) {
   return (
     <header>
-      <h1><Link to='/' onClick={props.resetForm}>katie vocab</Link></h1>
+      <h1><Link to='/' onClick={props.resetForm}>Lingo</Link></h1>
       <div>
         {props.currentUser
           ?
@@ -16,6 +16,9 @@ export default function Header(props) {
           <button onClick={props.handleLoginButton}>Login/register</button>
         }
       </div>
+      <h2>Books</h2>
+      <h2>Movies</h2>
+      <h2>TV Shows</h2>
     </header>
   )
 }

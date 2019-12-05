@@ -61,3 +61,12 @@ export const readAllFlashcards = async () => {
   const resp = await api.get('/flashcards')
   return resp.data
 }
+export const updateFlashcard = async (id, data) => {
+  const resp = await api.put(`/flashcards/${id}`, { flashcard: data })
+  return resp.data
+}
+
+export const destroyFlashcard = async (id) => {
+  const resp = await api.delete(`/flashcards/${id}`)
+  return resp.data
+}

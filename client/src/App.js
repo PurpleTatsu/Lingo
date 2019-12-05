@@ -9,8 +9,10 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm'
 import Header from './components/Header'
 import { createVehicle, readAllVehicles, updateVehicle, destroyVehicle, loginUser, registerUser, verifyUser } from './services/api-helper'
+import { createFlashcard, readAllFlashcards } from './services/api-helper'
 
 import './App.css';
+import CreateFlashcard from './components/CreateFlashcard';
 
 
 class App extends Component {
@@ -30,7 +32,13 @@ class App extends Component {
         email: "",
         password: "",
       },
-     
+      flashcards: [],
+      flashcardForm: {
+        vocab: "",
+        vocab2: "",
+        vocab3: "",
+        description: "",
+      },
     };
   }
 
@@ -53,7 +61,12 @@ class App extends Component {
     })
   }
 
- 
+  getFlashcards = async () => {
+    const flashcards = await readAllFlashcards();
+    this.setState({
+      flashcards
+    })
+  }
 
 
   /////// CREATE ///////
@@ -73,15 +86,34 @@ class App extends Component {
     this.props.history.push("/");
   };
 
+  newFlashcard = async vehicleId => {
+    debugger;
+    const flashcard = await createFlashcard( vehicleId, this.state.flashcardForm);
+    this.setState(prevState => ({
+      flashcards: [...prevState.flashcards, flashcard]
+    }));
+    this.props.history.push("/");
+  };
+
  
 
   /////// UPDATE ///////
-  handleFormChange = (e) => {
+  handleVehicleFormChange = (e) => {
     console.log(e)
     const { name, value } = e.target;
     this.setState(prevState => ({
       vehicleForm: {
         ...prevState.vehicleForm,
+        [name]: value
+      },
+    }))
+  }
+
+  handleFlashcardFormChange = (e) => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      flashcardForm: {
+        ...prevState.flashcardForm,
         [name]: value
       }
     }))
@@ -186,7 +218,7 @@ class App extends Component {
             <VehiclesView
               vehicles={this.state.vehicles}
               vehicleForm={this.state.vehicleForm}
-              handleFormChange={this.handleFormChange}
+              handleVehicleFormChange={this.handleVehicleFormChange}
               newVehicle={this.newVehicle} />
           )}
         />
@@ -194,7 +226,7 @@ class App extends Component {
           path="/new/vehicle"
           render={() => (
             <CreateVehicle
-              handleFormChange={this.handleFormChange}
+              handleVehicleFormChange={this.handleVehicleFormChange}
               vehicleForm={this.state.vehicleForm}
               newVehicle={this.newVehicle}
               currentUser={this.state.currentUser}
@@ -208,22 +240,23 @@ class App extends Component {
             return <VehiclePage
               id={id}
               vehicle={vehicle}
-              handleFormChange={this.handleFormChange}
+              handleVehicleFormChange={this.handleVehicleFormChange}
               mountEditForm={this.mountEditForm}
               editVehicle={this.editVehicle}
               vehicleForm={this.state.vehicleForm}
               deleteVehicle={this.deleteVehicle}
               // vehicleId={vehicleId}
-              flashcards={this.state.flashcards}
-              flashcardForm={this.state.flashcardForm}
+             
             />
           }}
         />
-         <Route path='/vehicles/:id/flashcard/new' render={(props) => (
-            <VehiclePage
+         <Route path='/new/flashcard' render={(props) => (
+            <CreateFlashcard
               createFlashcard={this.createFlashcard}
               flashcards={this.state.flashcards}
-              // currentVehicle={props.match.params.vehicleId}
+              flashcardForm={this.state.flashcardForm}
+              handleFlashcardFormChange={this.handleFlashcardFormChange}
+              newFlashcard={this.newFlashcard}
             />
           )} />
       </div>

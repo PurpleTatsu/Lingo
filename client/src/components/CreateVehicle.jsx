@@ -17,28 +17,28 @@ function CreateVehicle(props) {
           name="title"
           placeholder="title"
           value={props.vehicleForm.title}
-          onChange={props.handleFormChange} />
+          onChange={props.handleVehicleFormChange} />
 
         <input
           type="text"
           name="language"
           placeholder="language"
           value={props.vehicleForm.language}
-          onChange={props.handleFormChange} />
+          onChange={props.handleVehicleFormChange} />
 
         <input
           type="text"
           name="image"
           placeholder="image"
           value={props.vehicleForm.image}
-          onChange={props.handleFormChange} />
+          onChange={props.handleVehicleFormChange} />
 
         <input
           type="text"
           name="genre"
           placeholder="genre"
           value={props.vehicleForm.genre}
-          onChange={props.handleFormChange} />
+          onChange={props.handleVehicleFormChange} />
 
 
         <input className="create-button" type="submit" value="Submit" />

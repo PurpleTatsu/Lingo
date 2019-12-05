@@ -1,5 +1,7 @@
 class FlashcardsController < ApplicationController
   before_action :set_flashcard, only: [:show, :update, :destroy]
+  before_action :authorize_request, except: %i[index show]
+
 
   # GET /flashcards
   def index

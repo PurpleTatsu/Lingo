@@ -1,7 +1,7 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-function EditTeacher(props) {
+function EditVehicle(props) {
   return (
     <div>
       <h3>Edit</h3>
@@ -12,34 +12,35 @@ function EditTeacher(props) {
           type="text"
           name="title"
           placeholder="title"
-          value={props.vehicleForm.name}
-          onChange={props.handleFormChange} />
+          value={props.title}
+          onChange={props.handleVehicleFormChange} />
 
         <input
           type="text"
           name="language"
           placeholder="language"
-          value={props.vehicleForm.language}
-          onChange={props.handleFormChange} />
+          value={props.language}
+          onChange={props.handleVehicleFormChange} />
 
         <input
           type="text"
           name="image"
           placeholder="image"
-          value={props.vehicleForm.image}
-          onChange={props.handleFormChange} />
+          value={props.image}
+          onChange={props.handleVehicleFormChange} />
 
         <input
           type="text"
           name="genre"
           placeholder="genre"
-          value={props.vehicleForm.genre}
-          onChange={props.handleFormChange} />
+          value={props.genre}
+          onChange={props.handleVehicleFormChange} />
         
         <button>Submit</button>
+        <Link to="/vehicle/:id"><button>Cancel</button></Link>
       </form>
     </div>
   )
 }
 
-export default withRouter(EditTeacher);
+export default withRouter(EditVehicle);

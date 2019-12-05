@@ -28,26 +28,31 @@ body{
   background-size: 100%; */
   height: auto;
   width: 100%;
-
+}
+.hero-section{
+  margin-bottom: 20px;
 }
 /* <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a> */
 
-.vehicle-container{
-  display:flex;
-  flex-wrap: wrap;
-}
+
 .vehicle-card{
   width: 220px; 
   height: 400px;
   text-align: center;
   margin: 0;
   object-fit: contain;
+  cursor: pointer;
+}
 
+#media{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .vehicle-card img{
-  max-width: 220px;
-  max-height: 400px;
+  width: 220px;
+  height: auto;
   object-fit: contain;
 
 }
@@ -55,10 +60,19 @@ body{
   margin: 2px;
 }
 
+.add-new-vehicle{
+  cursor: pointer;
+
+}
 .add-new-vehicle, .plus-sign{
   text-align: center;
   width: 100px;
+  margin: 0 auto;
 }
+.add-new-vehicle h3{
+  margin:0;
+}
+
 .vehicle-page {
   display:flex;
   /* flex-wrap: wrap; */

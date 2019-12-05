@@ -119,7 +119,7 @@ getFlashcards = async () => {
 
   render() {
     const { vehicle } = this.props;
-
+    const { flashcards } = this.state.flashcards
     return (
       <div>
         {vehicle === undefined ? <h2>Loading . . .</h2> : (
@@ -172,13 +172,17 @@ getFlashcards = async () => {
           exact path="/vehicles/:id"
           render={() => (
             <FlashcardsView
-              flashcard={this.state.flashcard}
+              flashcards={this.state.flashcards}
               flashcardForm={this.state.flashcardForm}
               handleFormChange={this.handleFormChange}
               newFlashcard={this.newFlashcard} />
           )}
         />
-      </div>)
+
+
+        
+      </div>
+    )
   }
 }
 

@@ -4,7 +4,6 @@ import { withRouter } from 'react-router';
 function FlashcardsView(props) {
   const {vehicle, flashcards } = this.props;
 
-  console.log(props)
   return (
     <div className="flashcard-container">
 

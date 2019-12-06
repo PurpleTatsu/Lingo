@@ -3,8 +3,8 @@ import { withRouter } from 'react-router-dom';
 
 function CreateVehicle(props) {
   return (
-    <div>
-      <h2>Add a new book/tv show/movie</h2>
+    <div className="add-new">
+      <h2>Add a new book, TV show, or movie!</h2>
       <form className="create-form" onSubmit={(e) => {
         e.preventDefault();
         props.newVehicle(props.currentUser.id, props.vehicleForm);

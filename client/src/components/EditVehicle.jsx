@@ -3,11 +3,10 @@ import { Link, withRouter } from 'react-router-dom';
 
 function EditVehicle(props) {
   return (
-    <div>
-      <h3>Edit</h3>
+    <div className="edit-vehicle">
+      <h3>Edit Media</h3>
       <form onSubmit={props.handleSubmit}>
 
-        
         <input
           type="text"
           name="title"
@@ -35,9 +34,9 @@ function EditVehicle(props) {
           placeholder="genre"
           value={props.genre}
           onChange={props.handleVehicleFormChange} />
-        
+
         <button>Submit</button>
-        <Link to="/vehicle/:id"><button>Cancel</button></Link>
+        <button onClick={props.onCancel}>Cancel</button>
       </form>
     </div>
   )

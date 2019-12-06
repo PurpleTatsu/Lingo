@@ -93,7 +93,7 @@ class App extends Component {
     this.setState(prevState => ({
       flashcards: [...prevState.flashcards, flashcard]
     }));
-    this.props.history.push("/");
+    this.props.history.push(`/vehicles/${this.state.id}`); //returns undefined, fix later
   };
 
  
@@ -137,6 +137,9 @@ class App extends Component {
         language: ""
       }
     })
+  }
+  handleCancelVehicleClick=()=>{
+    this.setState((prevState) => ({ "vehicleForm": !prevState.vehicleForm }));
   }
 
   editVehicle = async () => {
@@ -231,6 +234,7 @@ class App extends Component {
               vehicleForm={this.state.vehicleForm}
               newVehicle={this.newVehicle}
               currentUser={this.state.currentUser}
+              onCancel={this.handleCancelVehicleClick}
             />
           )} />
         <Route

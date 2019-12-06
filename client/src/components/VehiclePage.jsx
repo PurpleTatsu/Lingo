@@ -14,6 +14,7 @@ class VehiclesPage extends Component {
       currentUser: null,
       isEdit: false,
       flashcards: [],
+      currentVehicle: null,
     }
 
   }
@@ -28,23 +29,14 @@ class VehiclesPage extends Component {
   // }
 
 
-  //read
-
-
-  //create
-
-
-
-  // vehiclesDidMount() {
-  //   this.readAllVehicles();
-  // }
-  // flashcardsDidMount() {
-  //   this.readAllFlashcards();
-  // }
+ 
   async componentDidMount() {
     this.props.mountEditForm(this.props.id);
     await this.props.getFlashcards(this.props.id)
-
+    const currentUser = await verifyUser();
+    if (currentUser) {
+      this.setState({ currentUser })
+    }
   }
 
 
@@ -112,7 +104,9 @@ class VehiclesPage extends Component {
                 </div>
               </div>
               {
-                this.state.isEdit ?
+
+                // (this.props.currentUser && this.props.currentUser.id === this.state.currentVehicle.currentUser.id) &&
+                  this.state.isEdit ?
                   <Route path={'/vehicles/:id/edit'} render={() => (
                     <EditVehicle
                       handleFormChange={this.props.handleFormChange}
@@ -134,66 +128,23 @@ class VehiclesPage extends Component {
                     }}>Edit</button>
                     <button onClick={() => {
                       this.props.deleteVehicle(vehicle.id);
-                      this.props.history.push('/')
+                      this.props.history.push(`/vehicles/${vehicle.id}`)
                     }}>Delete</button>
                   </div>
-
               }
-
             </>
-
           )
-
         }
         {
-
           <>
-            <button
-              onClick={() => {
-                this.props.history.push(`/vehicles/${this.props.id}/flashcard/new`);
-                // this.props.history.push(`/new/flashcard`);
-                window.scrollTo(0, 0);
-              }}>Add flashcard</button>
-
-            {/* <FlashcardsView
-            id={this.props.match.params.id}
-            flashcards={this.state.flashcards}
-            flashcardForm={this.state.flashcardForm}
-            handleVehicleFormChange={this.handleVehicleFormChange}
-            newFlashcard={this.newFlashcard} />
-
-           */}
+            <div className="add-flashcard">
+              <button className="add-flashcard-button"
+                onClick={() => {
+                  this.props.history.push(`/vehicles/${this.props.id}/flashcard/new`);
+                }}>Add flashcard</button>
+            </div>
           </>
         }
-
-
-
-        {/* <Route
-          path="/new/flashcard"
-          render={() => (
-            <CreateFlashcard
-              handleFlashcardFormChange={this.handleFlashcardFormChange}
-              flashcardForm={this.state.flashcardForm}
-              newFlashcard={this.newFlashcard}
-              currentUser={this.state.currentUser}
-            />
-          )} /> */}
-
-
-        {/* <Route
-          exact path="/vehicles/:id"
-          render={() => (
-            <FlashcardsView
-              id={this.props.match.params.id}
-              flashcards={this.state.flashcards}
-              flashcardForm={this.state.flashcardForm}
-              handleVehicleFormChange={this.handleVehicleFormChange}
-              newFlashcard={this.newFlashcard} />
-          )}
-        /> */}
-
-
-
       </div>
     )
   }

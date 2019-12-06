@@ -15,7 +15,7 @@ function FlashcardsView(props) {
 
           
         </div>
-        <h3>Add new vocabulary</h3>
+        {/* <h3>Add new vocabulary</h3> */}
     
   
       {
@@ -34,7 +34,7 @@ function FlashcardsView(props) {
                 <h3>{flashcard.vocab2}</h3>
                 <h3>{flashcard.vocab3}</h3>
                 <h3>{flashcard.description}</h3>
-
+                <br></br>
               </div>
             ))}
     

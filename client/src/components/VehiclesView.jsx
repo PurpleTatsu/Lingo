@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { Link, withRouter } from 'react-router-dom';
 
 function VehiclesView(props) {
 
@@ -10,22 +10,20 @@ function VehiclesView(props) {
         <img className="hero-image" src="https://github.com/PurpleTatsu/P4-Flashcards/blob/master/client/src/images/hero-image.jpg?raw=true" />
 
 
-        {/* <button className="spin">Spin</button> */}
 
       
           
+{/* className="add-new-vehicle" id="loading"  */}
+        
+        <Link to="/new/vehicle">
+        <div className="container">
 
-          <div className="wrap"onClick={() => {
-            props.history.push('/new/vehicle');
-            window.scrollTo(0, 0);
-          }}>
-            <div className="circle">
+            <img src="https://github.com/PurpleTatsu/P4-Flashcards/blob/master/client/src/images/PinClipart.com_ground-hog-day-clip_1980971.png?raw=true" />
+            <div className="centered">Add New Media</div>
 
-              <div className="line1"></div>
-              <div className="line2"></div>
-              <span className="text">add media</span>
             </div>
-          </div>
+        </Link>
+         
 
           {/* <img
             alt="Add a new book, movie, or TV show"

@@ -1,6 +1,6 @@
 class FlashcardsController < ApplicationController
   before_action :set_flashcard, only: [:show, :update, :destroy]
-  before_action :authorize_request, except: %i[index show]
+  before_action :authorize_request, except: %i[index show create]
 
 
   # GET /flashcards
@@ -17,17 +17,23 @@ class FlashcardsController < ApplicationController
 
   # POST /flashcards
   def create
-    @flashcard = Flashcard.new(flashcard_params)
+
+    @vehicle = Vehicle.find(params[:vehicle_id])
+    @flashcard = @vehicle.flashcards.new(flashcard_params)
 
     if @flashcard.save
-      render json: @flashcard, status: :created, location: @flashcard
+      render json: @flashcard, status: :created
     else
       render json: @flashcard.errors, status: :unprocessable_entity
     end
   end
 
+
+
+
   # PATCH/PUT /flashcards/1
   def update
+    byebug
     if @flashcard.update(flashcard_params)
       render json: @flashcard
     else
@@ -48,6 +54,6 @@ class FlashcardsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def flashcard_params
-      params.require(:flashcard).permit(:vocab, :vocab2, :vocab3, :description)
+      params.require(:flashcard).permit( :vocab, :vocab2, :vocab3, :description, :vehicle_id)
     end
 end

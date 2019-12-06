@@ -8,6 +8,7 @@ import CreateVehicle from './components/CreateVehicle'
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm'
 import Header from './components/Header'
+import FlashcardsView from './components/FlashcardsView'
 import { createVehicle, readAllVehicles, updateVehicle, destroyVehicle, loginUser, registerUser, verifyUser } from './services/api-helper'
 import { createFlashcard, readAllFlashcards } from './services/api-helper'
 
@@ -61,8 +62,8 @@ class App extends Component {
     })
   }
 
-  getFlashcards = async () => {
-    const flashcards = await readAllFlashcards();
+  getFlashcards = async (id) => {
+    const flashcards = await readAllFlashcards(id);
     this.setState({
       flashcards
     })
@@ -86,9 +87,9 @@ class App extends Component {
     this.props.history.push("/");
   };
 
-  newFlashcard = async vehicleId => {
-    debugger;
-    const flashcard = await createFlashcard( vehicleId, this.state.flashcardForm);
+  newFlashcard = async (id,data) => {
+
+    const flashcard = await createFlashcard(id,data);
     this.setState(prevState => ({
       flashcards: [...prevState.flashcards, flashcard]
     }));
@@ -246,19 +247,34 @@ class App extends Component {
               vehicleForm={this.state.vehicleForm}
               deleteVehicle={this.deleteVehicle}
               // vehicleId={vehicleId}
-             
+              getFlashcards={this.getFlashcards}
             />
           }}
         />
-         <Route path='/new/flashcard' render={(props) => (
-            <CreateFlashcard
+         <Route path='/vehicles/:id/flashcard/new' render={(props) => (
+          <CreateFlashcard
+            {...props}
+              id={this.props.match.params.id}
               createFlashcard={this.createFlashcard}
               flashcards={this.state.flashcards}
               flashcardForm={this.state.flashcardForm}
               handleFlashcardFormChange={this.handleFlashcardFormChange}
               newFlashcard={this.newFlashcard}
             />
-          )} />
+        )} />
+        {this.state.flashcards &&
+          <Route
+            exact path="/vehicles/:id"
+            render={(props) => (
+              <FlashcardsView
+                id={this.props.match.params.id}
+                flashcards={this.state.flashcards}
+                flashcardForm={this.state.flashcardForm}
+                handleVehicleFormChange={this.handleVehicleFormChange}
+                newFlashcard={this.newFlashcard}
+              />
+            )}
+          />}
       </div>
     );
   }

@@ -53,13 +53,14 @@ export const destroyVehicle = async (id) => {
 
 //adding new flashcards
 export const createFlashcard = async (vehicleId, data) => {
-  const resp = await api.post('/flashcards', { flashcard: data })
+  const resp = await api.post(`/vehicles/${vehicleId}/flashcards`, { flashcard: data })
   return resp.data
 }
 
-export const readAllFlashcards = async () => {
-  const resp = await api.get('/flashcards')
-  return resp.data
+export const readAllFlashcards = async (vehicleId) => {
+
+  const resp = await api.get(`/vehicles/${vehicleId}`)
+  return resp.data.flashcards
 }
 export const updateFlashcard = async (id, data) => {
   const resp = await api.put(`/flashcards/${id}`, { flashcard: data })

@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 function CreateVehicle(props) {
-  console.log(props)
   return (
     <div>
       <h2>Add a new book/tv show/movie</h2>

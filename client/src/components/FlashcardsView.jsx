@@ -1,20 +1,17 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter,Link } from 'react-router-dom';
 
 function FlashcardsView(props) {
-  const {vehicle, flashcards } = props;
+  const { vehicle, flashcards,id } = props;
 
   return (
     <div className="flashcard-container">
 
      
       <div className="flashcard-page">
-          <button
-            onClick={() => {
-              // this.props.history.push(`/vehicles/${vehicle.id}/flashcard/new`);
-              props.history.push(`/new/flashcard`);
-              window.scrollTo(0, 0);
-            }}>Add flashcard</button>
+        
+        {/* <Link to={`/vehicles/${id}/flashcard/new`}>Add flashcard</Link> */}
+          
 
           
         </div>
@@ -22,10 +19,10 @@ function FlashcardsView(props) {
     
   
       {
-            flashcards.map(flashcard => (
+            props.flashcards && props.flashcards.map(flashcard => (
 
               <div
-                key={this.props.flashcard.id}
+                key={flashcard.id}
                 className="flashcard-card"
                 // onClick={(e) => {
                 //   this.props.history.push(`/flashcards/${flashcard.id}`);
@@ -33,10 +30,10 @@ function FlashcardsView(props) {
                 // }
                 >
 
-                <h3>{props.flashcard.vocab}</h3>
-                <h3>{props.flashcard.vocab2}</h3>
-                <h3>{props.flashcard.vocab3}</h3>
-                <h3>{props.flashcard.description}</h3>
+                <h3>{flashcard.vocab}</h3>
+                <h3>{flashcard.vocab2}</h3>
+                <h3>{flashcard.vocab3}</h3>
+                <h3>{flashcard.description}</h3>
 
               </div>
             ))}

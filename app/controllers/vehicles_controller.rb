@@ -11,7 +11,10 @@ class VehiclesController < ApplicationController
 
   # GET /vehicles/1
   def show
-    render json: @vehicle
+    @vehicle = Vehicle.find(params[:id])
+    @flashcards = Flashcard.where(vehicle_id: @vehicle.id)
+
+    render json: @vehicle, include: :flashcards 
   end
 
   # POST /vehicles

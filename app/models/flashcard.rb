@@ -1,3 +1,3 @@
 class Flashcard < ApplicationRecord
-  belongs_to :vehicles
+  belongs_to :vehicle
 end

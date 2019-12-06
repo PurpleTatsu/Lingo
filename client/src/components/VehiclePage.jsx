@@ -29,10 +29,10 @@ class VehiclesPage extends Component {
 
 
   //read
-  
+
 
   //create
- 
+
 
 
   // vehiclesDidMount() {
@@ -41,11 +41,14 @@ class VehiclesPage extends Component {
   // flashcardsDidMount() {
   //   this.readAllFlashcards();
   // }
-  componentDidMount() {
+  async componentDidMount() {
     this.props.mountEditForm(this.props.id);
+    await this.props.getFlashcards(this.props.id)
+
   }
 
-  
+
+
 
   mountEditForm = async (id) => {
     const flashcards = await readAllFlashcards();
@@ -142,7 +145,30 @@ class VehiclesPage extends Component {
           )
 
         }
-        <Route
+        {
+
+          <>
+            <button
+              onClick={() => {
+                this.props.history.push(`/vehicles/${this.props.id}/flashcard/new`);
+                // this.props.history.push(`/new/flashcard`);
+                window.scrollTo(0, 0);
+              }}>Add flashcard</button>
+
+            {/* <FlashcardsView
+            id={this.props.match.params.id}
+            flashcards={this.state.flashcards}
+            flashcardForm={this.state.flashcardForm}
+            handleVehicleFormChange={this.handleVehicleFormChange}
+            newFlashcard={this.newFlashcard} />
+
+           */}
+          </>
+        }
+
+
+
+        {/* <Route
           path="/new/flashcard"
           render={() => (
             <CreateFlashcard
@@ -151,18 +177,20 @@ class VehiclesPage extends Component {
               newFlashcard={this.newFlashcard}
               currentUser={this.state.currentUser}
             />
-          )} />
+          )} /> */}
 
-        <Route
+
+        {/* <Route
           exact path="/vehicles/:id"
           render={() => (
             <FlashcardsView
+              id={this.props.match.params.id}
               flashcards={this.state.flashcards}
               flashcardForm={this.state.flashcardForm}
               handleVehicleFormChange={this.handleVehicleFormChange}
               newFlashcard={this.newFlashcard} />
           )}
-        />
+        /> */}
 
 
 

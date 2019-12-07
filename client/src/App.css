@@ -26,9 +26,15 @@ footer div a{
  color: gray;
  
 }
+
 footer img{
   height: 30px;
-  width: auto;
+  width: 30px;
+  border-radius: 50%;
+  padding: 5px;
+}
+footer img:hover{
+  background: gray;
 
 }
 .lingo-logo{

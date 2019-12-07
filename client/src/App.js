@@ -122,7 +122,7 @@ class App extends Component {
 
   setEdit = (vehicleData) => {
     // const vehicles = await readAllVehicles();
-    const { title, image, genre, language} = vehicleData;
+    const { title, image, genre, language } = vehicleData;
     this.setState({
       vehicleForm: {
         title,
@@ -131,7 +131,7 @@ class App extends Component {
         language,
       }
     });
-    this.props.history.push(`/vehicles/${vehicleData.id}/edit`)
+    this.props.history.push(`/vehicles/${vehicleData.id}`)
   }
 
   resetForm = () => {
@@ -348,7 +348,8 @@ class App extends Component {
           />}
         <footer>
           <div><Link to="https://github.com/PurpleTatsu/Lingo">
-            <img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" />
+              <img id="white" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" />
+
           </Link>
             <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a>
           </div>

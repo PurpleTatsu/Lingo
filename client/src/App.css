@@ -79,7 +79,11 @@ body{
 .vehicle-card img:hover{
   -webkit-transform: scale(1.1,1.1);
   transform: scale(1.1,1.1);
-  transition: all 0.3s ease-in-out 0s;
+  border-radius: 4px;
+  transform-origin: bottom center;
+  transition: transform .1s ease-out;
+  overflow: hidden;  
+
 }
 
 

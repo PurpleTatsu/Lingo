@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import VehiclesView from './components/VehiclesView';
 import VehiclePage from './components/VehiclePage';
 import CreateVehicle from './components/CreateVehicle'
 import LoginForm from './components/LoginForm';
+import EditVehicle from './components/EditVehicle';
 import RegisterForm from './components/RegisterForm'
 import Header from './components/Header'
 import FlashcardsView from './components/FlashcardsView'
 import { createVehicle, readAllVehicles, updateVehicle, destroyVehicle, loginUser, registerUser, verifyUser } from './services/api-helper'
-import { createFlashcard, readAllFlashcards } from './services/api-helper'
+import { createFlashcard, readAllFlashcards, destroyFlashcard } from './services/api-helper'
 
 import './App.css';
 import CreateFlashcard from './components/CreateFlashcard';
@@ -44,17 +45,26 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    this.getVehicles();
-    const currentUser = await verifyUser();
-    if (currentUser) {
-      this.setState({ currentUser })
-    }
+    const vehicles = await readAllVehicles();
+    // const currentUser = await verifyUser();
+    this.setState({
+      vehicles
+    })
   }
 
- 
+  // async componentDidMount() {
+  //   this.getVehicles();
+  //   const vehicles = await readAllVehicles();
+  //   const currentUser = await verifyUser();
+  //   if (currentUser) {
+  //     this.setState({
+  //       currentUser,
+  //       vehicles
+  //     })
+  //   }
+  // }
 
-
-  /////// READ ///////
+  /////// Read ///////
   getVehicles = async () => {
     const vehicles = await readAllVehicles();
     this.setState({
@@ -69,16 +79,7 @@ class App extends Component {
     })
   }
 
-
-  /////// CREATE ///////
-  // createTripList = async userId => {
-  //   const newTriplist = await postTripList(userId, this.state.tripListFormData);
-  //   this.setState(prevState => ({
-  //     tripLists: [...prevState.tripLists, newTriplist]
-  //   }));
-  //   this.props.history.push("/");
-  // };
-
+  /////// Create ///////
   newVehicle = async userId => {
     const vehicle = await createVehicle(userId, this.state.vehicleForm);
     this.setState(prevState => ({
@@ -87,45 +88,50 @@ class App extends Component {
     this.props.history.push("/");
   };
 
-  newFlashcard = async (id,data) => {
-
-    const flashcard = await createFlashcard(id,data);
+  newFlashcard = async (id, data) => {
+    const flashcard = await createFlashcard(id, data);
     this.setState(prevState => ({
       flashcards: [...prevState.flashcards, flashcard]
     }));
     this.props.history.push(`/vehicles/${this.state.id}`); //returns undefined, fix later
   };
 
- 
+  /////// Update/Edit ///////
 
-  /////// UPDATE ///////
   handleVehicleFormChange = (e) => {
-    console.log(e)
     const { name, value } = e.target;
     this.setState(prevState => ({
       vehicleForm: {
         ...prevState.vehicleForm,
         [name]: value
-      },
-    }))
-  }
-
-  handleFlashcardFormChange = (e) => {
-    const { name, value } = e.target;
-    this.setState(prevState => ({
-      flashcardForm: {
-        ...prevState.flashcardForm,
-        [name]: value
       }
-    }))
+    }));
   }
 
-  mountEditForm = async (id) => {
-    const vehicles = await readAllVehicles();
-    const vehicle = vehicles.find(el => el.id === parseInt(id));
+  editSubmit = async (id) => {
+    const editedVehicle = await updateVehicle(id, this.state.vehicleForm);
+    this.setState(prevState => ({
+      vehicles: prevState.vehicles.map(vehicle => {
+        return vehicle.id === parseInt(id) ? editedVehicle : vehicle
+
+      })
+    }));
+    this.props.history.push(`/vehicles/${id}`)
+
+  }
+
+  setEdit = (vehicleData) => {
+    // const vehicles = await readAllVehicles();
+    const { title, image, genre, language} = vehicleData;
     this.setState({
-      vehicleForm: vehicle,
+      vehicleForm: {
+        title,
+        image,
+        genre,
+        language,
+      }
     });
+    this.props.history.push(`/vehicles/${vehicleData.id}/edit`)
   }
 
   resetForm = () => {
@@ -138,27 +144,68 @@ class App extends Component {
       }
     })
   }
-  handleCancelVehicleClick=()=>{
+  //---//
+  handleFlashcardFormChange = (e) => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      flashcardForm: {
+        ...prevState.flashcardForm,
+        [name]: value
+      }
+    }))
+  }
+  // editFlashcard = async () => {
+  //   const { flashcardForm } = this.state
+  //   await updateFlashcard(flashcardForm.id, flashcardForm);
+  //   this.setState(prevState => (
+  //     {
+  //       flashcards: prevState.flashcards.map(flashcard => {
+  //         return flashcard.id === flashcardForm.id ? flashcardForm : flashcard
+  //       }),
+  //     }
+  //   ))
+  // }
+  // mountEditForm = async (id) => {
+  //   const flashcards = await readAllFlashcards();
+  //   const flashcard = flashcards.find(el => el.id === parseInt(id));
+  //   this.setState({
+  //     flashcardForm: flashcard,
+  //   });
+  // }
+
+  // resetForm = () => {
+  //   this.setState({
+  //     flashcardForm: {
+  //       vocab: "",
+  //       vocab2: "",
+  //       vocab3: "",
+  //       description: ""
+  //     }
+  //   })
+  // }
+
+
+
+  handleCancelVehicleClick = () => {
     this.setState((prevState) => ({ "vehicleForm": !prevState.vehicleForm }));
   }
-
-  editVehicle = async () => {
-    const { vehicleForm } = this.state
-    await updateVehicle(vehicleForm.id, vehicleForm);
-    this.setState(prevState => (
-      {
-        vehicles: prevState.vehicles.map(vehicle => {
-          return vehicle.id === vehicleForm.id ? vehicleForm : vehicle
-        }),
-      }
-    ))
+  handleCancelFlashcardClick = () => {
+    this.setState((prevState) => ({ "flashcardForm": !prevState.flashcardForm }));
   }
 
-  /////// DELETE ///////
+
+  /////// Delete ///////
   deleteVehicle = async (id) => {
     await destroyVehicle(id);
     this.setState(prevState => ({
       vehicles: prevState.vehicles.filter(vehicle => vehicle.id !== id)
+    }))
+  }
+
+  deleteFlashcard = async (id) => {
+    await destroyFlashcard(id);
+    this.setState(prevState => ({
+      flashcards: prevState.flashcards.filter(flashcard => flashcard.id !== id)
     }))
   }
 
@@ -181,7 +228,7 @@ class App extends Component {
   }
 
   handleLogout = () => {
-    localStorage.removeItem("authToken"); ///jwt?
+    localStorage.removeItem("authToken");
     this.setState({
       currentUser: null
     })
@@ -215,7 +262,7 @@ class App extends Component {
             handleRegister={this.handleRegister}
             handleChange={this.authHandleChange}
             formData={this.state.authFormData} />)} />
-        
+
         <Route
           exact path="/"
           render={() => (
@@ -245,26 +292,46 @@ class App extends Component {
             return <VehiclePage
               id={id}
               vehicle={vehicle}
-              handleVehicleFormChange={this.handleVehicleFormChange}
-              mountEditForm={this.mountEditForm}
-              editVehicle={this.editVehicle}
-              vehicleForm={this.state.vehicleForm}
+              setEdit={this.setEdit}
+
+              // mountEditForm={this.mountEditForm}
+              // handleVehicleFormChange={this.handleVehicleFormChange}
+
+              // vehicleForm={this.state.vehicleForm}
+
               deleteVehicle={this.deleteVehicle}
-              // vehicleId={vehicleId}
               getFlashcards={this.getFlashcards}
             />
           }}
         />
-         <Route path='/vehicles/:id/flashcard/new' render={(props) => (
+
+        {/* edit vehicle */}
+        <Route path="/vehicles/:id/edit" render={(props) => {
+          const id = props.match.params.id;
+          return <EditVehicle
+            id={id}
+
+            vehicleForm={this.state.vehicleForm}
+            handleFlashcardFormChange={this.handleFlashcardFormChange}
+
+            editSubmit={this.editSubmit}
+          />
+        }} />
+
+
+
+        <Route path='/vehicles/:id/flashcard/new' render={(props) => (
           <CreateFlashcard
             {...props}
-              id={this.props.match.params.id}
-              createFlashcard={this.createFlashcard}
-              flashcards={this.state.flashcards}
-              flashcardForm={this.state.flashcardForm}
-              handleFlashcardFormChange={this.handleFlashcardFormChange}
-              newFlashcard={this.newFlashcard}
-            />
+            id={this.props.match.params.id}
+            createFlashcard={this.createFlashcard}
+            flashcards={this.state.flashcards}
+            flashcardForm={this.state.flashcardForm}
+            handleFlashcardFormChange={this.handleFlashcardFormChange}
+            newFlashcard={this.newFlashcard}
+            onCancel={this.handleCancelFlashcardClick}
+
+          />
         )} />
         {this.state.flashcards &&
           <Route
@@ -274,11 +341,18 @@ class App extends Component {
                 id={this.props.match.params.id}
                 flashcards={this.state.flashcards}
                 flashcardForm={this.state.flashcardForm}
-                handleVehicleFormChange={this.handleVehicleFormChange}
+                // handleVehicleFormChange={this.handleVehicleFormChange}
                 newFlashcard={this.newFlashcard}
               />
             )}
           />}
+        <footer>
+          <div><Link to="https://github.com/PurpleTatsu/Lingo">
+            <img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" />
+          </Link>
+            <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a>
+          </div>
+        </footer>
       </div>
     );
   }

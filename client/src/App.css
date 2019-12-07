@@ -5,6 +5,32 @@ header{
   color: white;
   justify-content: space-evenly;
 }
+footer{
+  background: #0D2D77;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+footer div{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.5em;
+  margin-top: 45px;
+}
+footer div a{
+ width: 100%;
+ text-decoration: none;
+ color: gray;
+ 
+}
+footer img{
+  height: 30px;
+  width: auto;
+
+}
 .lingo-logo{
   height: 50px;
   width: auto;
@@ -12,7 +38,9 @@ header{
 .lingo-logo:hover{
 border: 1px solid rgba(255,255,255,0.1)
 }
-
+header div{
+  margin: 0 auto;
+}
 header h2{
   font-size: 1em;
 }
@@ -57,7 +85,7 @@ body{
   /* position: absolute; */
   height: 100%;    
 }
-/* <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a> */
+
 
 
 .vehicle-card{
@@ -213,9 +241,12 @@ form p{
 
 
 .add-new{
-  margin: 0 auto;
+  margin: 2% auto;
   text-align: center;
-    text-transform: capitalize;
+  text-transform: capitalize;
+  width: 50%;
+  background: #0A101E;
+  padding: 5px;
 
 }
 .create-form{
@@ -231,7 +262,7 @@ form p{
   height: 20%;
   margin:5px auto;  
 }
-input[type="submit" i] {
+input[type="submit" i], .create-form button {
   width: 100px;
   height: 40px;
   background: #1957E6;
@@ -239,11 +270,16 @@ input[type="submit" i] {
   border: none;
   font-size: 1em;
   font-family: PT serif;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out 0s;
+
 }
 
-input[type="submit" i]:hover {
-  background: #3d6ddd;
- 
+input[type="submit" i]:hover{
+  background: #0B3680;
+}
+.create-form button:hover{
+  background: darkgray;
 }
 #buttons{
   margin: auto;

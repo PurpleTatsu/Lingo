@@ -45,6 +45,6 @@ ActiveRecord::Schema.define(version: 2019_12_05_215037) do
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
-  add_foreign_key "flashcards", "vehicles"
-  add_foreign_key "vehicles", "users"
+  add_foreign_key "flashcards", "vehicles", on_delete: :cascade
+  add_foreign_key "vehicles", "users", on_delete: :cascade
 end

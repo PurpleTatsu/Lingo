@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000'
+// const baseUrl = 'https://p4-lingo-api.herokuapp.com/'
 
 const api = axios.create({
   baseURL: baseUrl
@@ -41,9 +42,14 @@ export const readAllVehicles = async () => {
   return resp.data
 }
 
-export const updateVehicle = async (id, data) => {
-  const resp = await api.put(`/vehicles/${id}`, { vehicle: data })
-  return resp.data
+// export const updateVehicle = async (id, data) => {
+//   const resp = await api.put(`/vehicles/${id}`, { vehicle: data })
+//   return resp.data
+// }
+
+export const updateVehicle = async (id, vehicleData) => {
+  const resp = await api.put(`/vehicles/${id}`, vehicleData);
+  return resp.data;
 }
 
 export const destroyVehicle = async (id) => {

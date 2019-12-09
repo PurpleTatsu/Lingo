@@ -6,7 +6,8 @@ header{
   justify-content: space-evenly;
 }
 footer{
-  background: #0D2D77;
+  /* background: #0D2D77; */
+  background: #0A101E;
   height: 100px;
   display: flex;
   justify-content: center;
@@ -113,7 +114,11 @@ body{
 .vehicle-card img:hover{
   -webkit-transform: scale(1.1,1.1);
   transform: scale(1.1,1.1);
-  transition: all 0.3s ease-in-out 0s;
+  border-radius: 4px;
+  transform-origin: bottom center;
+  transition: transform .1s ease-out;
+  overflow: hidden;  
+
 }
 
 
@@ -195,8 +200,8 @@ body{
   flex-direction: column;
   text-align: center;
   text-transform: capitalize;
-
 }
+
 .vehicle-info h1{
   font-size: 3em;
   margin: 0 auto;
@@ -240,11 +245,31 @@ form p{
   border: 1px solid white; */
   text-align: center;
 }
+
 .flashcard-card h3{
   margin: 5px;
   background: rgba(255,255,255,0.1);
 }
 
+.flashcard-card button{
+        width: 100px;
+    height: 25px;
+    background: transparent;
+    color: white;
+    border: 1px solid gray;
+    font-size: 1em;
+    color: gray;
+    font-family: PT serif;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out 0s;
+  }
+    
+    .flashcard-card button:hover{
+  
+      background: gray;
+      color: black;
+     
+    }
 
 .add-new{
   margin: 2% auto;
@@ -268,7 +293,7 @@ form p{
   height: 20%;
   margin:5px auto;  
 }
-input[type="submit" i], .create-form button {
+input[type="submit" i], .create-form button{
   width: 100px;
   height: 40px;
   background: #1957E6;
@@ -278,12 +303,32 @@ input[type="submit" i], .create-form button {
   font-family: PT serif;
   margin: 5px auto;
   transition: all 0.3s ease-in-out 0s;
-
 }
 
 input[type="submit" i]:hover{
   background: #0B3680;
 }
+.vehicle-info button{
+  width: 100px;
+  height: 25px;
+  background: transparent;
+  color: white;
+  border: 1px solid gray;
+  font-size: 1em;
+  color: gray;
+  font-family: PT serif;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out 0s;
+}
+.vehicle-info button:hover{
+ 
+  background: gray;
+  color: black;
+ 
+}
+
+
+
 .create-form button:hover{
   background: darkgray;
 }
@@ -353,4 +398,8 @@ header button{
   header button:hover{
     background: #0B3680;
     transition: all 0.3s ease-in-out 0s;
+  }
+
+  #login-button{
+    margin-top: 15px;
   }

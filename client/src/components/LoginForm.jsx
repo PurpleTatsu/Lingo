@@ -11,6 +11,7 @@ const LoginForm = (props) => {
       <form onSubmit={(e) => {
         e.preventDefault();
         props.handleLogin();
+
       }} >
         <p>Username:</p>
         <input name="username" type="text" value={props.formData.username} onChange={props.handleChange} />

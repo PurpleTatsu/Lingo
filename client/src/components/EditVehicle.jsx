@@ -2,14 +2,16 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 function EditVehicle(props) {
+  console.log(props)
   return (
     <div className="edit-vehicle">
       <h3>Edit Media</h3>
       <form onSubmit={(e) => {
         e.preventDefault();
-        props.editSubmit(props.id);
+        props.editSubmit(props.vehicleForm);
+       
       }}>
-     
+
 
         <input
           type="text"

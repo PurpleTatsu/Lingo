@@ -11,7 +11,6 @@ class VehiclesPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: null,
       isEdit: false,
       flashcards: [],
       currentVehicle: null,
@@ -20,9 +19,7 @@ class VehiclesPage extends Component {
   }
 
   async componentDidMount() {
-
     this.props.setEdit(this.props.vehicle);
-
     await this.props.getFlashcards(this.props.id)
     const currentUser = await verifyUser();
     if (currentUser) {
@@ -31,9 +28,10 @@ class VehiclesPage extends Component {
   }
 
   render() {
-
-    const { vehicle } = this.props;
+    const { currentUser } = this.props;
+    const { vehicle, setEdit } = this.props;
     const { flashcards } = this.state.flashcards
+    console.log(currentUser)
     return (
       <div className="vehicle-page">
 
@@ -47,21 +45,26 @@ class VehiclesPage extends Component {
                   <h3>{vehicle.genre}</h3>
                   <h3>{vehicle.language}</h3>
                   <h1>{vehicle.title}</h1>
-                  <button onClick={() => {
-                    this.props.deleteVehicle(vehicle.id);
-                    this.props.history.push(`/vehicles`)
-                  }}>Delete</button>
-                  
-                  <button onClick={() => {
-                    this.props.setEdit(vehicle.id);
-                    this.props.history.push(`/vehicles/${vehicle.id}/edit`)
-                  }}>Edit</button>
+
+                  {
+                    currentUser && currentUser.id === vehicle.user_id && (
+                      <>
+                        <button onClick={() => {
+                          this.props.deleteVehicle(vehicle.id);
+                          this.props.history.push(`/`)
+                        }}>Delete</button>
+
+                        <button onClick={() => {
+                          setEdit(vehicle.id);
+                          this.props.history.push(`/vehicles/${vehicle.id}/edit`)
+                        }}>Edit</button>
+                      </>
+                    )
+                  }
+
                 </div>
               </div>
-              {/* don't mess with code up here, probably */}
-              
-            
-              {/* don't mess w/code beyond here */}
+
             </>
           )
         }

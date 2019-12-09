@@ -45,22 +45,33 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    this.handleVerify()
+    const currentUser = await verifyUser();
     const vehicles = await readAllVehicles();
-    // const currentUser = await verifyUser();
-    this.setState({
-      vehicles
-    })
+    if (currentUser) {
+      this.setState({
+        currentUser,
+        vehicles
+      })
+    }
   }
+
+
+
+    // const currentUser = await verifyUser();
+    // if (currentUser) {
+    //   this.setState({
+    //     currentUser
+    //   })
+    // } else {
+    //   console.log('there is no one signed in')
+    // }
+  
 
   // async componentDidMount() {
   //   this.getVehicles();
   //   const vehicles = await readAllVehicles();
   //   const currentUser = await verifyUser();
-  //   if (currentUser) {
-  //     this.setState({
-  //       currentUser,
-  //       vehicles
-  //     })
   //   }
   // }
 
@@ -93,7 +104,7 @@ class App extends Component {
     this.setState(prevState => ({
       flashcards: [...prevState.flashcards, flashcard]
     }));
-    this.props.history.push(`/vehicles/${this.state.id}`); //returns undefined, fix later
+    this.props.history.push(`/vehicles/${id}`); //returns undefined, fix later
   };
 
   /////// Update/Edit ///////
@@ -109,6 +120,7 @@ class App extends Component {
   }
 
   editSubmit = async (id) => {
+    // const { vehicleForm } = this.state
     const editedVehicle = await updateVehicle(id, this.state.vehicleForm);
     this.setState(prevState => ({
       vehicles: prevState.vehicles.map(vehicle => {
@@ -120,7 +132,7 @@ class App extends Component {
 
   }
 
-  setEdit = (vehicleData) => {
+  setEdit = async (vehicleData) => {
     // const vehicles = await readAllVehicles();
     const { title, image, genre, language } = vehicleData;
     this.setState({
@@ -134,16 +146,17 @@ class App extends Component {
     this.props.history.push(`/vehicles/${vehicleData.id}`)
   }
 
-  resetForm = () => {
-    this.setState({
-      vehicleForm: {
-        title: "",
-        image: "",
-        genre: "",
-        language: ""
-      }
-    })
-  }
+  // resetForm = () => {
+  //   this.setState({
+  //     vehicleForm: {
+  //       title: "",
+  //       image: "",
+  //       genre: "",
+  //       language: ""
+  //     }
+  //   })
+  // }
+
   //---//
   handleFlashcardFormChange = (e) => {
     const { name, value } = e.target;
@@ -186,8 +199,11 @@ class App extends Component {
 
 
 
-  handleCancelVehicleClick = () => {
+  handleCancelVehicleClick = (id) => { //returns undefined object
     this.setState((prevState) => ({ "vehicleForm": !prevState.vehicleForm }));
+    this.props.history.push(`/vehicles/${id}`)
+
+
   }
   handleCancelFlashcardClick = () => {
     this.setState((prevState) => ({ "flashcardForm": !prevState.flashcardForm }));
@@ -219,6 +235,7 @@ class App extends Component {
   handleLogin = async () => {
     const currentUser = await loginUser(this.state.authFormData);
     this.setState({ currentUser });
+    this.props.history.push('/')
   }
 
   handleRegister = async (e) => {
@@ -226,7 +243,13 @@ class App extends Component {
     const currentUser = await registerUser(this.state.authFormData);
     this.setState({ currentUser });
   }
-
+  handleVerify = async () => {
+    const currentUser = await verifyUser();
+    if (currentUser) {
+      this.setState({ currentUser })
+    }
+  }
+  
   handleLogout = () => {
     localStorage.removeItem("authToken");
     this.setState({
@@ -285,7 +308,7 @@ class App extends Component {
             />
           )} />
         <Route
-          path="/vehicles/:id"
+          exact path="/vehicles/:id"
           render={(props) => {
             const { id } = props.match.params;
             const vehicle = this.state.vehicles.find(el => el.id === parseInt(id));
@@ -293,6 +316,7 @@ class App extends Component {
               id={id}
               vehicle={vehicle}
               setEdit={this.setEdit}
+              currentUser={this.state.currentUser}
 
               // mountEditForm={this.mountEditForm}
               // handleVehicleFormChange={this.handleVehicleFormChange}
@@ -301,20 +325,22 @@ class App extends Component {
 
               deleteVehicle={this.deleteVehicle}
               getFlashcards={this.getFlashcards}
+              deleteFlashcard={this.deleteFlashcard}
             />
           }}
         />
 
         {/* edit vehicle */}
         <Route path="/vehicles/:id/edit" render={(props) => {
-          const id = props.match.params.id;
+          const vehicleId = props.match.params.id;
           return <EditVehicle
-            id={id}
-
+            vehicleId={vehicleId}
             vehicleForm={this.state.vehicleForm}
-            handleFlashcardFormChange={this.handleFlashcardFormChange}
-
+            handleVehicleFormChange={this.handleVehicleFormChange}
             editSubmit={this.editSubmit}
+            currentUser={this.state.currentUser}
+            onCancel={this.handleCancelVehicleClick}
+
           />
         }} />
 
@@ -336,19 +362,25 @@ class App extends Component {
         {this.state.flashcards &&
           <Route
             exact path="/vehicles/:id"
-            render={(props) => (
+          render={(props) => (
+        
+
               <FlashcardsView
+              vehicleId={props.match.params.id.vehicleId}
+
                 id={this.props.match.params.id}
                 flashcards={this.state.flashcards}
                 flashcardForm={this.state.flashcardForm}
                 // handleVehicleFormChange={this.handleVehicleFormChange}
                 newFlashcard={this.newFlashcard}
+                deleteFlashcard={this.deleteFlashcard}
+
               />
             )}
           />}
         <footer>
           <div><Link to="https://github.com/PurpleTatsu/Lingo">
-              <img id="white" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" />
+            <img id="white" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" />
 
           </Link>
             <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a>

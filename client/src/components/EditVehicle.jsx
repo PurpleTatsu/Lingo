@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 function EditVehicle(props) {
   console.log(props)
@@ -42,7 +42,7 @@ function EditVehicle(props) {
           onChange={props.handleVehicleFormChange} />
 
         <button>Submit</button>
-        <button onClick={props.onCancel}>Cancel</button>
+        <button onClick={props.resetForm}>Cancel</button>
       </form>
     </div>
   )

@@ -1,6 +1,5 @@
 import React from 'react';
 
-// This component handles our register form
 const RegisterForm = (props) => {
 
   return (

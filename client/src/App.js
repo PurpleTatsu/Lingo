@@ -42,6 +42,7 @@ class App extends Component {
         description: "",
       },
     };
+    this.baseState = this.state 
   }
 
   async componentDidMount() {
@@ -56,24 +57,10 @@ class App extends Component {
     }
   }
 
+  resetForm = () => {
+    this.setState(this.baseState)
+  }
 
-
-    // const currentUser = await verifyUser();
-    // if (currentUser) {
-    //   this.setState({
-    //     currentUser
-    //   })
-    // } else {
-    //   console.log('there is no one signed in')
-    // }
-  
-
-  // async componentDidMount() {
-  //   this.getVehicles();
-  //   const vehicles = await readAllVehicles();
-  //   const currentUser = await verifyUser();
-  //   }
-  // }
 
   /////// Read ///////
   getVehicles = async () => {
@@ -104,10 +91,9 @@ class App extends Component {
     this.setState(prevState => ({
       flashcards: [...prevState.flashcards, flashcard]
     }));
-    this.props.history.push(`/vehicles/${id}`); //returns undefined, fix later
+    this.props.history.push(`/vehicles/${id}`);
   };
 
-  /////// Update/Edit ///////
 
   handleVehicleFormChange = (e) => {
     const { name, value } = e.target;
@@ -120,7 +106,6 @@ class App extends Component {
   }
 
   editSubmit = async (id) => {
-    // const { vehicleForm } = this.state
     const editedVehicle = await updateVehicle(id, this.state.vehicleForm);
     this.setState(prevState => ({
       vehicles: prevState.vehicles.map(vehicle => {
@@ -133,7 +118,6 @@ class App extends Component {
   }
 
   setEdit = async (vehicleData) => {
-    // const vehicles = await readAllVehicles();
     const { title, image, genre, language } = vehicleData;
     this.setState({
       vehicleForm: {
@@ -146,18 +130,7 @@ class App extends Component {
     this.props.history.push(`/vehicles/${vehicleData.id}`)
   }
 
-  // resetForm = () => {
-  //   this.setState({
-  //     vehicleForm: {
-  //       title: "",
-  //       image: "",
-  //       genre: "",
-  //       language: ""
-  //     }
-  //   })
-  // }
 
-  //---//
   handleFlashcardFormChange = (e) => {
     const { name, value } = e.target;
     this.setState(prevState => ({
@@ -167,47 +140,17 @@ class App extends Component {
       }
     }))
   }
-  // editFlashcard = async () => {
-  //   const { flashcardForm } = this.state
-  //   await updateFlashcard(flashcardForm.id, flashcardForm);
-  //   this.setState(prevState => (
-  //     {
-  //       flashcards: prevState.flashcards.map(flashcard => {
-  //         return flashcard.id === flashcardForm.id ? flashcardForm : flashcard
-  //       }),
-  //     }
-  //   ))
+
+
+  // handleCancelVehicleClick = (id) => { //returns undefined object
+  //   this.setState((prevState) => ({ "vehicleForm": !prevState.vehicleForm }));
+  //   this.props.history.push(`/vehicles/${id}`)
+
+
   // }
-  // mountEditForm = async (id) => {
-  //   const flashcards = await readAllFlashcards();
-  //   const flashcard = flashcards.find(el => el.id === parseInt(id));
-  //   this.setState({
-  //     flashcardForm: flashcard,
-  //   });
+  // handleCancelFlashcardClick = () => {
+  //   this.setState((prevState) => ({ "flashcardForm": !prevState.flashcardForm }));
   // }
-
-  // resetForm = () => {
-  //   this.setState({
-  //     flashcardForm: {
-  //       vocab: "",
-  //       vocab2: "",
-  //       vocab3: "",
-  //       description: ""
-  //     }
-  //   })
-  // }
-
-
-
-  handleCancelVehicleClick = (id) => { //returns undefined object
-    this.setState((prevState) => ({ "vehicleForm": !prevState.vehicleForm }));
-    this.props.history.push(`/vehicles/${id}`)
-
-
-  }
-  handleCancelFlashcardClick = () => {
-    this.setState((prevState) => ({ "flashcardForm": !prevState.flashcardForm }));
-  }
 
 
   /////// Delete ///////
@@ -249,7 +192,7 @@ class App extends Component {
       this.setState({ currentUser })
     }
   }
-  
+
   handleLogout = () => {
     localStorage.removeItem("authToken");
     this.setState({
@@ -304,7 +247,7 @@ class App extends Component {
               vehicleForm={this.state.vehicleForm}
               newVehicle={this.newVehicle}
               currentUser={this.state.currentUser}
-              onCancel={this.handleCancelVehicleClick}
+              resetForm={this.resetForm}
             />
           )} />
         <Route
@@ -317,12 +260,6 @@ class App extends Component {
               vehicle={vehicle}
               setEdit={this.setEdit}
               currentUser={this.state.currentUser}
-
-              // mountEditForm={this.mountEditForm}
-              // handleVehicleFormChange={this.handleVehicleFormChange}
-
-              // vehicleForm={this.state.vehicleForm}
-
               deleteVehicle={this.deleteVehicle}
               getFlashcards={this.getFlashcards}
               deleteFlashcard={this.deleteFlashcard}
@@ -330,7 +267,6 @@ class App extends Component {
           }}
         />
 
-        {/* edit vehicle */}
         <Route path="/vehicles/:id/edit" render={(props) => {
           const vehicleId = props.match.params.id;
           return <EditVehicle
@@ -339,7 +275,7 @@ class App extends Component {
             handleVehicleFormChange={this.handleVehicleFormChange}
             editSubmit={this.editSubmit}
             currentUser={this.state.currentUser}
-            onCancel={this.handleCancelVehicleClick}
+            resetForm={this.resetForm}
 
           />
         }} />
@@ -355,23 +291,20 @@ class App extends Component {
             flashcardForm={this.state.flashcardForm}
             handleFlashcardFormChange={this.handleFlashcardFormChange}
             newFlashcard={this.newFlashcard}
-            onCancel={this.handleCancelFlashcardClick}
+            resetForm={this.resetForm}
 
           />
         )} />
         {this.state.flashcards &&
           <Route
             exact path="/vehicles/:id"
-          render={(props) => (
-        
+            render={(props) => (
 
               <FlashcardsView
-              vehicleId={props.match.params.id.vehicleId}
-
+                vehicleId={props.match.params.id.vehicleId}
                 id={this.props.match.params.id}
                 flashcards={this.state.flashcards}
                 flashcardForm={this.state.flashcardForm}
-                // handleVehicleFormChange={this.handleVehicleFormChange}
                 newFlashcard={this.newFlashcard}
                 deleteFlashcard={this.deleteFlashcard}
 
@@ -380,7 +313,7 @@ class App extends Component {
           />}
         <footer>
           <div><Link to="https://github.com/PurpleTatsu/Lingo">
-            <img id="white" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" />
+            <img id="white" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" alt="github" />
 
           </Link>
             <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a>

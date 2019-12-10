@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import EditVehicle from './EditVehicle'
-import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { verifyUser } from '../services/api-helper'
 
@@ -30,7 +28,7 @@ class VehiclesPage extends Component {
   render() {
     const { currentUser } = this.props;
     const { vehicle, setEdit } = this.props;
-    const { flashcards } = this.state.flashcards
+    // const { flashcards } = this.state.flashcards
     console.log(currentUser)
     return (
       <div className="vehicle-page">

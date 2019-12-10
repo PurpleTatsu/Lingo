@@ -15,6 +15,7 @@ import { createFlashcard, readAllFlashcards, destroyFlashcard } from './services
 
 import './App.css';
 import CreateFlashcard from './components/CreateFlashcard';
+import SideBar from "./components/Sidebar";
 
 
 class App extends Component {
@@ -312,10 +313,11 @@ class App extends Component {
             )}
           />}
         <footer>
-          <div><Link to="https://github.com/PurpleTatsu/Lingo">
+          <div>
+          <a href="https://github.com/PurpleTatsu/Lingo" target="_blank" > 
             <img id="white" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" alt="github" />
 
-          </Link>
+          </a>
             <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a>
           </div>
         </footer>

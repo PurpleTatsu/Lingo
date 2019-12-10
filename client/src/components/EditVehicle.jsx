@@ -2,13 +2,13 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 function EditVehicle(props) {
-  console.log(props)
   return (
     <div className="edit-vehicle">
       <h3>Edit Media</h3>
-      <form onSubmit={(e) => {
+      <form className="edit-form" onSubmit={(e) => {
+        
         e.preventDefault();
-        props.editSubmit(props.vehicleForm);
+        props.editSubmit(props.vehicleId, props.vehicleForm);
        
       }}>
 
@@ -17,28 +17,28 @@ function EditVehicle(props) {
           type="text"
           name="title"
           placeholder="title"
-          value={props.title}
+          value={props.vehicleForm.title}
           onChange={props.handleVehicleFormChange} />
 
         <input
           type="text"
           name="language"
           placeholder="language"
-          value={props.language}
+          value={props.vehicleForm.language}
           onChange={props.handleVehicleFormChange} />
 
         <input
           type="text"
           name="image"
           placeholder="image"
-          value={props.image}
+          value={props.vehicleForm.image}
           onChange={props.handleVehicleFormChange} />
 
         <input
           type="text"
           name="genre"
           placeholder="genre"
-          value={props.genre}
+          value={props.vehicleForm.genre}
           onChange={props.handleVehicleFormChange} />
 
         <button>Submit</button>

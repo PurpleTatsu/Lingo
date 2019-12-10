@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 function VehiclesView(props) {
 
   return (
+    <div className="page-topper">
 
     <div className="vehicle-container">
       <div className="hero-section">
@@ -42,6 +43,7 @@ function VehiclesView(props) {
             ))}
         </div>
 
+      </div>
       </div>
       )
     }

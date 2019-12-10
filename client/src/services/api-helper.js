@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3000'
+// const baseUrl = 'http://localhost:3000'
+const baseUrl = 'https://p4-lingo-api.herokuapp.com/'
 
 const api = axios.create({
   baseURL: baseUrl
@@ -36,14 +37,17 @@ export const createVehicle = async (userId, data) => {
   return resp.data
 }
 
-export const readAllVehicles = async () => {
+export const readAllVehicles = async (vehicleData) => {
   const resp = await api.get('/vehicles')
   return resp.data
 }
 
-export const updateVehicle = async (id, data) => {
-  const resp = await api.put(`/vehicles/${id}`, { vehicle: data })
-  return resp.data
+
+
+export const updateVehicle = async (id, vehicleData) => {
+
+  const resp = await api.put(`/vehicles/${id}`, vehicleData);
+  return resp.data;
 }
 
 export const destroyVehicle = async (id) => {
@@ -58,16 +62,15 @@ export const createFlashcard = async (vehicleId, data) => {
 }
 
 export const readAllFlashcards = async (vehicleId) => {
-
   const resp = await api.get(`/vehicles/${vehicleId}`)
   return resp.data.flashcards
 }
-export const updateFlashcard = async (id, data) => {
-  const resp = await api.put(`/flashcards/${id}`, { flashcard: data })
+export const updateFlashcard = async (vehicleId, id, data) => {
+  const resp = await api.put(`/vehicles/${vehicleId}/flashcards/${id}`, { flashcard: data })
   return resp.data
 }
 
 export const destroyFlashcard = async (id) => {
-  const resp = await api.delete(`/flashcards/${id}`)
+  const resp = await api.delete(`/vehicles/vehicleId/flashcards/${id}`)
   return resp.data
 }

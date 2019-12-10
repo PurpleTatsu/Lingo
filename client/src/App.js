@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import VehiclesView from './components/VehiclesView';
 import VehiclePage from './components/VehiclePage';
 import CreateVehicle from './components/CreateVehicle'
 import LoginForm from './components/LoginForm';
+import EditVehicle from './components/EditVehicle';
 import RegisterForm from './components/RegisterForm'
 import Header from './components/Header'
 import FlashcardsView from './components/FlashcardsView'
 import { createVehicle, readAllVehicles, updateVehicle, destroyVehicle, loginUser, registerUser, verifyUser } from './services/api-helper'
-import { createFlashcard, readAllFlashcards } from './services/api-helper'
+import { createFlashcard, readAllFlashcards, destroyFlashcard } from './services/api-helper'
 
 import './App.css';
 import CreateFlashcard from './components/CreateFlashcard';
@@ -41,20 +42,27 @@ class App extends Component {
         description: "",
       },
     };
+    this.baseState = this.state 
   }
 
   async componentDidMount() {
-    this.getVehicles();
+    this.handleVerify()
     const currentUser = await verifyUser();
+    const vehicles = await readAllVehicles();
     if (currentUser) {
-      this.setState({ currentUser })
+      this.setState({
+        currentUser,
+        vehicles
+      })
     }
   }
 
- 
+  resetForm = () => {
+    this.setState(this.baseState)
+  }
 
 
-  /////// READ ///////
+  /////// Read ///////
   getVehicles = async () => {
     const vehicles = await readAllVehicles();
     this.setState({
@@ -69,16 +77,7 @@ class App extends Component {
     })
   }
 
-
-  /////// CREATE ///////
-  // createTripList = async userId => {
-  //   const newTriplist = await postTripList(userId, this.state.tripListFormData);
-  //   this.setState(prevState => ({
-  //     tripLists: [...prevState.tripLists, newTriplist]
-  //   }));
-  //   this.props.history.push("/");
-  // };
-
+  /////// Create ///////
   newVehicle = async userId => {
     const vehicle = await createVehicle(userId, this.state.vehicleForm);
     this.setState(prevState => ({
@@ -87,28 +86,50 @@ class App extends Component {
     this.props.history.push("/");
   };
 
-  newFlashcard = async (id,data) => {
-
-    const flashcard = await createFlashcard(id,data);
+  newFlashcard = async (id, data) => {
+    const flashcard = await createFlashcard(id, data);
     this.setState(prevState => ({
       flashcards: [...prevState.flashcards, flashcard]
     }));
-    this.props.history.push(`/vehicles/${this.state.id}`); //returns undefined, fix later
+    this.props.history.push(`/vehicles/${id}`);
   };
 
- 
 
-  /////// UPDATE ///////
   handleVehicleFormChange = (e) => {
-    console.log(e)
     const { name, value } = e.target;
     this.setState(prevState => ({
       vehicleForm: {
         ...prevState.vehicleForm,
         [name]: value
-      },
-    }))
+      }
+    }));
   }
+
+  editSubmit = async (id) => {
+    const editedVehicle = await updateVehicle(id, this.state.vehicleForm);
+    this.setState(prevState => ({
+      vehicles: prevState.vehicles.map(vehicle => {
+        return vehicle.id === parseInt(id) ? editedVehicle : vehicle
+
+      })
+    }));
+    this.props.history.push(`/vehicles/${id}`)
+
+  }
+
+  setEdit = async (vehicleData) => {
+    const { title, image, genre, language } = vehicleData;
+    this.setState({
+      vehicleForm: {
+        title,
+        image,
+        genre,
+        language,
+      }
+    });
+    this.props.history.push(`/vehicles/${vehicleData.id}`)
+  }
+
 
   handleFlashcardFormChange = (e) => {
     const { name, value } = e.target;
@@ -120,45 +141,30 @@ class App extends Component {
     }))
   }
 
-  mountEditForm = async (id) => {
-    const vehicles = await readAllVehicles();
-    const vehicle = vehicles.find(el => el.id === parseInt(id));
-    this.setState({
-      vehicleForm: vehicle,
-    });
-  }
 
-  resetForm = () => {
-    this.setState({
-      vehicleForm: {
-        title: "",
-        image: "",
-        genre: "",
-        language: ""
-      }
-    })
-  }
-  handleCancelVehicleClick=()=>{
-    this.setState((prevState) => ({ "vehicleForm": !prevState.vehicleForm }));
-  }
+  // handleCancelVehicleClick = (id) => { //returns undefined object
+  //   this.setState((prevState) => ({ "vehicleForm": !prevState.vehicleForm }));
+  //   this.props.history.push(`/vehicles/${id}`)
 
-  editVehicle = async () => {
-    const { vehicleForm } = this.state
-    await updateVehicle(vehicleForm.id, vehicleForm);
-    this.setState(prevState => (
-      {
-        vehicles: prevState.vehicles.map(vehicle => {
-          return vehicle.id === vehicleForm.id ? vehicleForm : vehicle
-        }),
-      }
-    ))
-  }
 
-  /////// DELETE ///////
+  // }
+  // handleCancelFlashcardClick = () => {
+  //   this.setState((prevState) => ({ "flashcardForm": !prevState.flashcardForm }));
+  // }
+
+
+  /////// Delete ///////
   deleteVehicle = async (id) => {
     await destroyVehicle(id);
     this.setState(prevState => ({
       vehicles: prevState.vehicles.filter(vehicle => vehicle.id !== id)
+    }))
+  }
+
+  deleteFlashcard = async (id) => {
+    await destroyFlashcard(id);
+    this.setState(prevState => ({
+      flashcards: prevState.flashcards.filter(flashcard => flashcard.id !== id)
     }))
   }
 
@@ -172,6 +178,7 @@ class App extends Component {
   handleLogin = async () => {
     const currentUser = await loginUser(this.state.authFormData);
     this.setState({ currentUser });
+    this.props.history.push('/')
   }
 
   handleRegister = async (e) => {
@@ -179,9 +186,15 @@ class App extends Component {
     const currentUser = await registerUser(this.state.authFormData);
     this.setState({ currentUser });
   }
+  handleVerify = async () => {
+    const currentUser = await verifyUser();
+    if (currentUser) {
+      this.setState({ currentUser })
+    }
+  }
 
   handleLogout = () => {
-    localStorage.removeItem("authToken"); ///jwt?
+    localStorage.removeItem("authToken");
     this.setState({
       currentUser: null
     })
@@ -215,7 +228,7 @@ class App extends Component {
             handleRegister={this.handleRegister}
             handleChange={this.authHandleChange}
             formData={this.state.authFormData} />)} />
-        
+
         <Route
           exact path="/"
           render={() => (
@@ -234,51 +247,78 @@ class App extends Component {
               vehicleForm={this.state.vehicleForm}
               newVehicle={this.newVehicle}
               currentUser={this.state.currentUser}
-              onCancel={this.handleCancelVehicleClick}
+              resetForm={this.resetForm}
             />
           )} />
         <Route
-          path="/vehicles/:id"
+          exact path="/vehicles/:id"
           render={(props) => {
             const { id } = props.match.params;
             const vehicle = this.state.vehicles.find(el => el.id === parseInt(id));
             return <VehiclePage
               id={id}
               vehicle={vehicle}
-              handleVehicleFormChange={this.handleVehicleFormChange}
-              mountEditForm={this.mountEditForm}
-              editVehicle={this.editVehicle}
-              vehicleForm={this.state.vehicleForm}
+              setEdit={this.setEdit}
+              currentUser={this.state.currentUser}
               deleteVehicle={this.deleteVehicle}
-              // vehicleId={vehicleId}
               getFlashcards={this.getFlashcards}
+              deleteFlashcard={this.deleteFlashcard}
             />
           }}
         />
-         <Route path='/vehicles/:id/flashcard/new' render={(props) => (
+
+        <Route path="/vehicles/:id/edit" render={(props) => {
+          const vehicleId = props.match.params.id;
+          return <EditVehicle
+            vehicleId={vehicleId}
+            vehicleForm={this.state.vehicleForm}
+            handleVehicleFormChange={this.handleVehicleFormChange}
+            editSubmit={this.editSubmit}
+            currentUser={this.state.currentUser}
+            resetForm={this.resetForm}
+
+          />
+        }} />
+
+
+
+        <Route path='/vehicles/:id/flashcard/new' render={(props) => (
           <CreateFlashcard
             {...props}
-              id={this.props.match.params.id}
-              createFlashcard={this.createFlashcard}
-              flashcards={this.state.flashcards}
-              flashcardForm={this.state.flashcardForm}
-              handleFlashcardFormChange={this.handleFlashcardFormChange}
-              newFlashcard={this.newFlashcard}
-            />
+            id={this.props.match.params.id}
+            createFlashcard={this.createFlashcard}
+            flashcards={this.state.flashcards}
+            flashcardForm={this.state.flashcardForm}
+            handleFlashcardFormChange={this.handleFlashcardFormChange}
+            newFlashcard={this.newFlashcard}
+            resetForm={this.resetForm}
+
+          />
         )} />
         {this.state.flashcards &&
           <Route
             exact path="/vehicles/:id"
             render={(props) => (
+
               <FlashcardsView
+                vehicleId={props.match.params.id.vehicleId}
                 id={this.props.match.params.id}
                 flashcards={this.state.flashcards}
                 flashcardForm={this.state.flashcardForm}
-                handleVehicleFormChange={this.handleVehicleFormChange}
                 newFlashcard={this.newFlashcard}
+                deleteFlashcard={this.deleteFlashcard}
+
               />
             )}
           />}
+        <footer>
+          <div><Link to="https://github.com/PurpleTatsu/Lingo">
+            <img id="white" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" alt="github" />
+
+          </Link>
+            <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a>
+          </div>
+        </footer>
       </div>
     );
   }

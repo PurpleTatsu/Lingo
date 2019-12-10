@@ -1,13 +1,13 @@
 import React from 'react';
 
-// This component handles our register form
 const RegisterForm = (props) => {
 
   return (
     <div className="auth-container">
       <h2>Register</h2>
       <hr />
-      <form onSubmit={props.handleRegister} >
+      <form onSubmit={props.handleRegister}
+      >
         <p>Username:</p>
         <input name="username" type="text" value={props.formData.username} onChange={props.handleChange} />
         <p>Email:</p>

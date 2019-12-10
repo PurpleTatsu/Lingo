@@ -5,59 +5,99 @@ header{
   color: white;
   justify-content: space-evenly;
 }
+
+#hamburger{
+  display: none;
+}
+
+footer{
+  background: #0A101E;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+footer div{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.5em;
+  margin-top: 45px;
+}
+
+footer div a{
+ width: 100%;
+ text-decoration: none;
+ color: gray;
+}
+
+footer img{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+footer img:hover{
+  background: gray;
+}
+
 .lingo-logo{
   height: 50px;
   width: auto;
 }
+
 .lingo-logo:hover{
 border: 1px solid rgba(255,255,255,0.1)
+}
+
+header div{
+  margin: 0 auto;
 }
 
 header h2{
   font-size: 1em;
 }
+
 header h2, header h1{
   margin: auto;
 }
+
 header p{
   margin-top:auto;
   margin-bottom: 0;
   text-align: center;
 }
+
 header a{
   color:white;
   text-decoration: none;
 }
 
 body{
-  /* background: #1566F0; */
   background: #0D2D77;
   color: white;
   font-family: 'PT Serif', serif;
 }
 
 .hero-image{
-  /* background: url("https://github.com/PurpleTatsu/P4-Flashcards/blob/master/client/src/images/hero-image.jpg?raw=true");
-  background-repeat: no-repeat;
-  background-size: 100%; */
   max-width: 100%;
   height: auto;
   width: 100%
 }
-.hero-section{
-  /* margin-bottom: 20px; */
-}
+
+
 #media{
   display:flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  /* background: rgb(21, 76, 194); */
   background: #0A101E;
   color: white;
-  /* position: absolute; */
   height: 100%;    
 }
-/* <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a> */
+
 
 
 .vehicle-card{
@@ -70,11 +110,13 @@ body{
   margin: 5px;
   padding: 10px;
 }
+
 .vehicle-card img{
   object-fit: cover;
   width: 300px;
   height: 200px;
-  }
+  border-radius: 4px;
+}
 
 .vehicle-card img:hover{
   -webkit-transform: scale(1.1,1.1);
@@ -83,7 +125,6 @@ body{
   transform-origin: bottom center;
   transition: transform .1s ease-out;
   overflow: hidden;  
-
 }
 
 
@@ -139,9 +180,6 @@ body{
   transform: translate(-50%, -50%);
 }
 
-
-
-
 .vehicle-page {
   display:flex;
   flex-wrap: wrap;
@@ -154,9 +192,7 @@ body{
   width: 100%;
   display: flex
 }
-/* .vehicle-hero img{
-  width: 100%;
-} */
+
 
 .vehicle-info{
   display: flex;
@@ -165,10 +201,10 @@ body{
   flex-direction: column;
   text-align: center;
   text-transform: capitalize;
-
 }
+
 .vehicle-info h1{
-  font-size: 3em;
+  font-size: 2.5em;
   margin: 0 auto;
 }
 .vehicle-info h3{
@@ -176,12 +212,10 @@ body{
   margin: 0 auto;
 }
 .vehicle-hero img{
-  /* margin: 5vh auto;*/
   width: 100%; 
   max-width: 70%;
   max-height:70vh;
   object-fit: cover;
-
 }
 
 
@@ -189,53 +223,93 @@ body{
   text-align: center;
 }
 
+.auth-container button{
+  cursor: pointer;
+  width: auto;
+  padding: 0 25px;
+  height: 20px;
+  background: #1957E6;
+  color: white;
+  border: none;
+  border-radius: 0 0 3px 3px;
+  margin: 3px;
+  font-size: 1em;
+  font-family: "PT Serif", serif;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.auth-container button:hover{
+  background: gray;
+  color: black;
+}
+
 form p{
   margin: 2px;
 }
+
 .flashcard-container{
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .flashcard-page, .flashcard-page h3 {
   width: 100%;
   text-align: center;
 }
+
 .flashcard-card{
   margin: 10px;
   width: 300px;
   height: auto;
-  /* background: rgb(30, 68, 101);
-  border: 1px solid white; */
   text-align: center;
 }
+
 .flashcard-card h3{
   margin: 5px;
   background: rgba(255,255,255,0.1);
 }
 
+.flashcard-card button{
+  width: 100px;
+  height: 25px;
+  background: transparent;
+  color: white;
+  border: 1px solid gray;
+  font-size: 1em;
+  color: gray;
+  font-family: PT serif;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out 0s;
+}
+    
+.flashcard-card button:hover{
+  background: gray;
+  color: black;
+}
 
 .add-new{
-  margin: 0 auto;
+  margin: 2% auto;
   text-align: center;
-    text-transform: capitalize;
-
+  text-transform: capitalize;
+  width: 50%;
+  background: #0A101E;
+  padding: 5px;
 }
+
 .create-form{
   display: flex;
   flex-direction: column;
-
 }
 
 .create-form input{
-  /* text-transform: capitalize; */
-
   width: 30%;
   height: 20%;
   margin:5px auto;  
 }
-input[type="submit" i] {
+
+input[type="submit" i], .create-form button{
   width: 100px;
   height: 40px;
   background: #1957E6;
@@ -243,16 +317,40 @@ input[type="submit" i] {
   border: none;
   font-size: 1em;
   font-family: PT serif;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out 0s;
 }
 
-input[type="submit" i]:hover {
-  background: #3d6ddd;
- 
+input[type="submit" i]:hover{
+  background: #0B3680;
 }
+
+.vehicle-info button{
+  width: 100px;
+  height: 25px;
+  background: transparent;
+  color: white;
+  border: 1px solid gray;
+  font-size: 1em;
+  color: gray;
+  font-family: PT serif;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.vehicle-info button:hover{
+  background: gray;
+  color: black;
+}
+
+.create-form button:hover{
+  background: darkgray;
+}
+
 #buttons{
   margin: auto;
- 
 }
+
 #buttons button{
 cursor: pointer;
 width: auto;
@@ -267,6 +365,7 @@ font-size: 1em;
 font-family: "PT Serif", serif;
 transition: all 0.3s ease-in-out 0s;
 }
+
 #buttons button:hover{
   background: #0B3680;
   transition: all 0.3s ease-in-out 0s;
@@ -291,12 +390,11 @@ transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
   cursor: pointer;
 }
+
 .add-flashcard-button:hover{
   background: #0B3680;
   transition: all 0.3s ease-in-out 0s;
-
 }
-
 
 header button{
   cursor: pointer;
@@ -311,8 +409,87 @@ header button{
   font-size: 1em;
   font-family: "PT Serif", serif;
   transition: all 0.3s ease-in-out 0s;
+}
+
+header button:hover{
+  background: #0B3680;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+#login-button{
+   margin-top: 15px;
+}
+
+/* ///// */
+
+
+  @media only screen and (max-width: 650px) 
+{
+  .vehicle-page {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  header button:hover{
-    background: #0B3680;
-    transition: all 0.3s ease-in-out 0s;
+  .vehicle-hero{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
   }
+  .vehicle-hero img {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+  
+  header div{
+    margin: auto 0;
+  }
+
+  header{
+    background: #0A101E;
+    height: 80px;
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .add-new{
+    width: 90%;
+  }
+
+  .create-form input{
+      width: 70%;
+  }
+
+  header h2{
+      display: none;
+    }
+
+  #hamburger{
+    display: flex;
+    height: 50px;
+    width: 50px;
+    margin: auto 0;
+    padding-left: 10px
+ }
+
+ header h1{
+   margin: 0;
+ }
+
+ .lingo-logo{
+   height: 80px;
+   width: 80px;
+ }
+
+ .vehicle-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80%;
+  padding-top: 10px;
+ }
+
+}

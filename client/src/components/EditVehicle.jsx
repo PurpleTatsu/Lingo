@@ -1,11 +1,17 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 function EditVehicle(props) {
+  console.log(props)
   return (
     <div className="edit-vehicle">
       <h3>Edit Media</h3>
-      <form onSubmit={props.handleSubmit}>
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        props.editSubmit(props.vehicleForm);
+       
+      }}>
+
 
         <input
           type="text"
@@ -36,7 +42,7 @@ function EditVehicle(props) {
           onChange={props.handleVehicleFormChange} />
 
         <button>Submit</button>
-        <button onClick={props.onCancel}>Cancel</button>
+        <button onClick={props.resetForm}>Cancel</button>
       </form>
     </div>
   )

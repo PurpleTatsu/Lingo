@@ -6,7 +6,8 @@ header{
   justify-content: space-evenly;
 }
 #hamburger{
-  visibility: invisible;
+  /* visibility: invisible; */
+  display: none;
 }
 footer{
   /* background: #0D2D77; */
@@ -446,28 +447,51 @@ header button{
     margin: 0 auto;
   }
   
-  /* .vehicle-info{
+header div{
+  margin: auto 0;
+}
+header{
+background: #0A101E;
+    height: 80px;
     display: flex;
-    flex-wrap: wrap;
-    margin: 7% auto auto auto;
-    flex-direction: column;
-    text-align: center;
-    text-transform: capitalize;
-  } */
-
-  .add-new{
+    color: white;
+    justify-content: space-between;
     width: 100%;
+  }
+  .add-new{
+    width: 90%;
  
     }
 
     .create-form input{
-      width: 100%;
+      width: 70%;
     }
 
 header h2{
       display: none;
     }
+
 #hamburger{
-  display: inline;
+  display: flex;
+  height: 50px;
+  width: 50px;
+  margin: auto 0;
+  padding-left: 10px
+ }
+
+ header h1{
+   margin: 0;
+ }
+
+ .lingo-logo{
+   height: 80px;
+   width: 80px;
+ }
+ .vehicle-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80%;
+  padding-top: 10px;
  }
 }

@@ -5,6 +5,9 @@ header{
   color: white;
   justify-content: space-evenly;
 }
+#hamburger{
+  visibility: invisible;
+}
 footer{
   /* background: #0D2D77; */
   background: #0A101E;
@@ -203,7 +206,7 @@ body{
 }
 
 .vehicle-info h1{
-  font-size: 3em;
+  font-size: 2.5em;
   margin: 0 auto;
 }
 .vehicle-info h3{
@@ -223,6 +226,25 @@ body{
 .auth-container{
   text-align: center;
 }
+
+.auth-container button{
+  cursor: pointer;
+    width: auto;
+    padding: 0 25px;
+    height: 20px;
+    background: #1957E6;
+    color: white;
+    border: none;
+    border-radius: 0 0 3px 3px;
+    margin: 3px;
+    font-size: 1em;
+    font-family: "PT Serif", serif;
+    transition: all 0.3s ease-in-out 0s;
+    }
+.auth-container button:hover{
+  background: gray;
+  color: black;
+    }
 
 form p{
   margin: 2px;
@@ -403,3 +425,49 @@ header button{
   #login-button{
     margin-top: 15px;
   }
+
+  @media only screen and (max-width: 650px) 
+{
+  .vehicle-page {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .vehicle-hero{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+  }
+  .vehicle-hero img {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+  
+  /* .vehicle-info{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 7% auto auto auto;
+    flex-direction: column;
+    text-align: center;
+    text-transform: capitalize;
+  } */
+
+  .add-new{
+    width: 100%;
+ 
+    }
+
+    .create-form input{
+      width: 100%;
+    }
+
+header h2{
+      display: none;
+    }
+#hamburger{
+  display: inline;
+ }
+}

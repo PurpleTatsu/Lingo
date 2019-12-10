@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 const LoginForm = (props) => {
 
   return (
+    <div className="page-topper">
+
     <div className="auth-container">
       <h2>Login</h2>
       <hr />
@@ -19,8 +21,9 @@ const LoginForm = (props) => {
         <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
         <hr />
         <button id="login-button">Login</button>
-        <Link to="/register"><button>Register</button></Link>
+        <Link to="/register"><button className="register">Register</button></Link>
       </form>
+    </div>
     </div>
   );
 }

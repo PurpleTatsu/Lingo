@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import VehiclesView from './components/VehiclesView';
@@ -43,7 +43,7 @@ class App extends Component {
         description: "",
       },
     };
-    this.baseState = this.state 
+    this.baseState = this.state
   }
 
   async componentDidMount() {
@@ -57,6 +57,7 @@ class App extends Component {
       })
     }
   }
+
 
   resetForm = () => {
     this.setState(this.baseState)
@@ -115,11 +116,12 @@ class App extends Component {
       })
     }));
     this.props.history.push(`/vehicles/${id}`)
-
   }
 
-  setEdit = async (vehicleData) => {
-    const { title, image, genre, language } = vehicleData;
+  setEdit = async (id) => {
+    const vehicle = await this.state.vehicles.find(vehicle => vehicle.id === parseInt(id))
+
+    const { title, image, genre, language } = vehicle;
     this.setState({
       vehicleForm: {
         title,
@@ -128,8 +130,8 @@ class App extends Component {
         language,
       }
     });
-    this.props.history.push(`/vehicles/${vehicleData.id}`)
   }
+
 
 
   handleFlashcardFormChange = (e) => {
@@ -214,6 +216,8 @@ class App extends Component {
   render() {
     return (
       <div className="App" >
+        <SideBar pageWrapId={"page-wrap"} outerContainerId={"App-sidebar"} />
+
         <Header
           handleLoginButton={this.handleLoginButton}
           handleLogout={this.handleLogout}
@@ -272,6 +276,7 @@ class App extends Component {
           const vehicleId = props.match.params.id;
           return <EditVehicle
             vehicleId={vehicleId}
+
             vehicleForm={this.state.vehicleForm}
             handleVehicleFormChange={this.handleVehicleFormChange}
             editSubmit={this.editSubmit}
@@ -314,10 +319,12 @@ class App extends Component {
           />}
         <footer>
           <div>
-          <a href="https://github.com/PurpleTatsu/Lingo" target="_blank" > 
-            <img id="white" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" alt="github" />
-
-          </a>
+            <img src="https://i.pinimg.com/originals/71/c0/68/71c068478e7499d73ec005eacbe42c10.gif" />
+            <div> <a href="https://github.com/PurpleTatsu/Lingo" target="_blank" >
+              <img id="white" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" alt="github" />
+            </a>
+              <p>© 2019 Katie Gray</p>
+            </div>
             <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a>
           </div>
         </footer>

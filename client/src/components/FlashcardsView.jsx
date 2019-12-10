@@ -5,6 +5,7 @@ function FlashcardsView(props) {
   // const { vehicle, flashcards, id } = props;
 
   return (
+
     <div className="flashcard-container">
 
 

@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 function CreateFlashcard(props) {
 
   return (
+    <div className="page-topper">
     <div className="add-new">
       <h2>Create a new flashcard</h2>
       <form className="create-form" onSubmit={(e) => {
@@ -45,7 +46,8 @@ function CreateFlashcard(props) {
        
 
       </form>
-    </div >
+      </div >
+      </div>
   )
 }
 

@@ -4,6 +4,7 @@ header{
   display: flex;
   color: white;
   justify-content: space-evenly;
+  
 }
 
 #hamburger{
@@ -24,7 +25,7 @@ footer div{
   text-align: center;
   margin-top: 10px;
   font-size: 0.5em;
-  margin-top: 45px;
+  /* margin-top: 45px; */
 }
 
 footer div a{
@@ -264,6 +265,7 @@ form p{
   width: 300px;
   height: auto;
   text-align: center;
+  border: 1px solid lightgray;
 }
 
 .flashcard-card h3{
@@ -289,7 +291,7 @@ form p{
   color: black;
 }
 
-.add-new{
+.add-new, .edit-vehicle{
   margin: 2% auto;
   text-align: center;
   text-transform: capitalize;
@@ -298,18 +300,19 @@ form p{
   padding: 5px;
 }
 
-.create-form{
+.create-form, .edit-form{
   display: flex;
   flex-direction: column;
 }
 
-.create-form input{
+.create-form input, .edit-form input{
   width: 30%;
   height: 20%;
   margin:5px auto;  
+  
 }
 
-input[type="submit" i], .create-form button{
+input[type="submit" i], .create-form button,.edit-form button{
   width: 100px;
   height: 40px;
   background: #1957E6;
@@ -343,7 +346,7 @@ input[type="submit" i]:hover{
   color: black;
 }
 
-.create-form button:hover{
+.create-form button:hover, .edit-form button:hover{
   background: darkgray;
 }
 
@@ -419,8 +422,13 @@ header button:hover{
 #login-button{
    margin-top: 15px;
 }
-
-/* ///// */
+/* .bm-overlay, .bm-menu{
+  display:none;
+} */
+.bm-burger-button{
+  display:none;
+}
+/* ///////////////////////////////////////////////MEDIA///////////////////////////////////////////////////// */
 
 
   @media only screen and (max-width: 650px) 
@@ -454,30 +462,26 @@ header button:hover{
     color: white;
     justify-content: space-between;
     width: 100%;
+    position: fixed;
+    z-index: 1;
   }
-  .add-new{
+  .page-topper{
+    padding-top: 81px;
+  }
+  .add-new, .edit-vehicle{
     width: 90%;
   }
 
-  .create-form input{
-      width: 70%;
-  }
+  
 
   header h2{
       display: none;
     }
 
-  #hamburger{
-    display: flex;
-    height: 50px;
-    width: 50px;
-    margin: auto 0;
-    padding-left: 10px
- }
 
  header h1{
-   margin: 0;
- }
+  margin-left: 80px; 
+}
 
  .lingo-logo{
    height: 80px;
@@ -492,4 +496,105 @@ header button:hover{
   padding-top: 10px;
  }
 
+ .create-form input, .edit-form input{
+  width: 70%;
+}
+
+
+
+
+/* //hamburger */
+
+#page-wrap {
+  text-align: center;
+  overflow: auto;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 10px;
+  color: black;  
+  transition: color 0.2s;
+}
+.bm-item img{
+  margin: 0 auto;
+}
+
+/* Change color on hover */
+.bm-item:hover {
+  color: white;
+}
+
+/* The rest copied directly from react-burger-menu docs */
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  display: inline;
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 27px;
+  top: 27px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: white;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: black;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  /* background: #373a47; */
+  background: #81BBFE;
+  
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: black;
+}
+.bm-item lingo-logo{
+  margin: 0 auto;
+}
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+}
+
+@media only screen and (min-height: 800px) 
+{
+  .vehicle-page {
+   
+    height: 750px;
+  
+  }
+}
+@media only screen and (min-height: 950px) 
+{
+  .vehicle-page {
+   
+    height: auto;
+  
+  }
 }

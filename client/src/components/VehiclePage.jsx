@@ -17,7 +17,7 @@ class VehiclesPage extends Component {
   }
 
   async componentDidMount() {
-    this.props.setEdit(this.props.vehicle);
+    // this.props.setEdit(this.props.vehicle);
     await this.props.getFlashcards(this.props.id)
     const currentUser = await verifyUser();
     if (currentUser) {
@@ -25,57 +25,65 @@ class VehiclesPage extends Component {
     }
   }
 
+  // async componentDidUpdate() {
+  //   this.props.setEdit(this.props.vehicle);
+
+  // }
+
   render() {
     const { currentUser } = this.props;
     const { vehicle, setEdit } = this.props;
     // const { flashcards } = this.state.flashcards
-    console.log(currentUser)
     return (
-      <div className="vehicle-page">
+      <div className="page-topper">
 
-        {
-          vehicle === undefined ? <h2>Loading . . .</h2> : (
-            <>
+        <div className="vehicle-page">
 
-              <div className="vehicle-hero">
-                <img alt={vehicle.title} src={vehicle.image} />
-                <div className="vehicle-info">
-                  <h3>{vehicle.genre}</h3>
-                  <h3>{vehicle.language}</h3>
-                  <h1>{vehicle.title}</h1>
+          {
+            vehicle === undefined ? <h2>Loading . . .</h2> : (
+              <>
 
-                  {
-                    currentUser && currentUser.id === vehicle.user_id && (
-                      <>
-                        <button onClick={() => {
-                          this.props.deleteVehicle(vehicle.id);
-                          this.props.history.push(`/`)
-                        }}>Delete</button>
+                <div className="vehicle-hero">
+                  <img alt={vehicle.title} src={vehicle.image} />
+                  <div className="vehicle-info">
+                    <h3>{vehicle.genre}</h3>
+                    <h3>{vehicle.language}</h3>
+                    <h1>{vehicle.title}</h1>
 
-                        <button onClick={() => {
-                          setEdit(vehicle.id);
-                          this.props.history.push(`/vehicles/${vehicle.id}/edit`)
-                        }}>Edit</button>
-                      </>
-                    )
-                  }
+                    {
+                      currentUser && currentUser.id === vehicle.user_id && (
+                        <>
+                          <button onClick={() => {
+                            this.props.deleteVehicle(vehicle.id);
+                            this.props.history.push(`/`)
+                          }}>Delete</button>
 
+                          <button onClick={() => {
+                            
+                            this.props.setEdit(vehicle.id);
+                            this.props.history.push(`/vehicles/${vehicle.id}/edit`)
+                          }}>Edit</button>
+                        </>
+                      )
+                    }
+
+                  </div>
                 </div>
-              </div>
 
+              </>
+            )
+          }
+          {
+            <>
+              <div className="add-flashcard">
+                <button className="add-flashcard-button"
+                  onClick={() => {
+                    this.props.history.push(`/vehicles/${this.props.id}/flashcard/new`);
+                  }}>Add flashcard</button>
+              </div>
             </>
-          )
-        }
-        {
-          <>
-            <div className="add-flashcard">
-              <button className="add-flashcard-button"
-                onClick={() => {
-                  this.props.history.push(`/vehicles/${this.props.id}/flashcard/new`);
-                }}>Add flashcard</button>
-            </div>
-          </>
-        }
+          }
+        </div>
       </div>
     )
   }

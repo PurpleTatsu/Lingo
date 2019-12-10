@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 function CreateVehicle(props) {
   return (
+    <div className="page-topper">
     <div className="add-new">
       <h2>Add a new book, TV show, or movie!</h2>
       <form className="create-form" onSubmit={(e) => {
@@ -42,6 +43,7 @@ function CreateVehicle(props) {
 
         <input className="create-button" type="submit" value="Submit" />
       </form>
+    </div >
     </div >
   )
 }

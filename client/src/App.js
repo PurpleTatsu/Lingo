@@ -16,6 +16,7 @@ import { createFlashcard, readAllFlashcards, destroyFlashcard } from './services
 import './App.css';
 import CreateFlashcard from './components/CreateFlashcard';
 import SideBar from "./components/Sidebar";
+import TvShows from './components/TvShows';
 
 
 class App extends Component {
@@ -317,16 +318,41 @@ class App extends Component {
               />
             )}
           />}
+
+
+
+        <Route
+          exact path="/vehicles/languages"
+          render={(props) => {
+           
+            return <TvShows
+              
+              
+            />
+          }}
+        />
+
         <footer>
+
+
           <div>
-            <img src="https://i.pinimg.com/originals/71/c0/68/71c068478e7499d73ec005eacbe42c10.gif" />
-            <div> <a href="https://github.com/PurpleTatsu/Lingo" target="_blank" >
-              <img id="white" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" alt="github" />
-            </a>
+            <div>
+              <img className="thanks" src="https://i.pinimg.com/originals/71/c0/68/71c068478e7499d73ec005eacbe42c10.gif"
+                onClick={() => {
+                  console.log("Kahil && Svetla && Brian && David && Shay")
+                }} />
+            </div>
+
+            <div>
+              <a href="https://github.com/PurpleTatsu/Lingo" target="_blank" >
+                <img id="white" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" alt="github" /> </a>
               <p>© 2019 Katie Gray</p>
             </div>
-            <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a>
           </div>
+          <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a>
+
+
+
         </footer>
       </div>
     );

@@ -17,7 +17,6 @@ class VehiclesPage extends Component {
   }
 
   async componentDidMount() {
-    // this.props.setEdit(this.props.vehicle);
     await this.props.getFlashcards(this.props.id)
     const currentUser = await verifyUser();
     if (currentUser) {
@@ -25,15 +24,10 @@ class VehiclesPage extends Component {
     }
   }
 
-  // async componentDidUpdate() {
-  //   this.props.setEdit(this.props.vehicle);
-
-  // }
 
   render() {
     const { currentUser } = this.props;
-    const { vehicle, setEdit } = this.props;
-    // const { flashcards } = this.state.flashcards
+    const { vehicle } = this.props;
     return (
       <div className="page-topper">
 

@@ -5,7 +5,7 @@ function EditVehicle(props) {
   return (
     <div className="edit-vehicle">
       <h3>Edit Media</h3>
-      <form onSubmit={(e) => {
+      <form className="edit-form" onSubmit={(e) => {
         
         e.preventDefault();
         props.editSubmit(props.vehicleId, props.vehicleForm);

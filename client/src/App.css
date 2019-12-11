@@ -295,6 +295,9 @@ form p{
   text-align: center;
   border: 1px solid lightgray;
 }
+.vocab{
+  font-size: 1.8em;
+}
 
 .flashcard-card h3{
   margin: 5px;

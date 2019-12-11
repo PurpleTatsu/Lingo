@@ -21,7 +21,7 @@ function FlashcardsView(props) {
             key={flashcard.id}
             className="flashcard-card">
 
-            <h3>{flashcard.vocab}</h3>
+            <h3 className="vocab">{flashcard.vocab}</h3>
             <h3>{flashcard.vocab2}</h3>
             <h3>{flashcard.vocab3}</h3>
             <h3>{flashcard.description}</h3>

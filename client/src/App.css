@@ -118,6 +118,7 @@ body{
   background: #0A101E;
   color: white;
   height: 100%;    
+  padding-bottom: 30px;
 }
 
 
@@ -466,7 +467,7 @@ header button:hover{
     justify-content: center;
   }
   .vehicle-hero{
-    width: 100%;
+    width: auto;    
     display: flex;
     flex-direction: column;
 
@@ -603,11 +604,27 @@ header button:hover{
 .bm-item lingo-logo{
   margin: 0 auto;
 }
+
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
 }
+
+@media only screen and (max-width: 850px) {
+  .vehicle-info{
+    margin: auto;
+  }
+.vehicle-info h1 {
+  font-size: 2em;
+}
+
+.vehicle-page{
+  display: flex;
+  flex-wrap: wrap;
+}
+}
+
 
 @media only screen and (min-height: 800px) 
 {

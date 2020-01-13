@@ -45,13 +45,13 @@ Click-and-drag vocab
 /media/:mediaId/vocab/	*for Vocab - Read Show, Update, and Delete*
 
 
-
+<!-- 
 | Component     | Priority| Estimated Time  | Time Invested  |Actual Time |
 | ------------- |:-------------:| -----:| -----:| -----:|
 | Adding form for Vocab| H |3.5hrs  | 3hrs | 3hrs |
 | Auth| H | 6hrs   | 6hrs | 6hrs |
 | Adding form for media| H     | 3.5hrs    | 3hrs | 1hr |
-| Design| M     | 4hrs    |  | 16hrs |
+| Design| M     | 4hrs    |  | 16hrs | -->
 
 ## Issues and Resolutions
 

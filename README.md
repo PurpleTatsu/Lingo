@@ -42,13 +42,23 @@ Click-and-drag vocab
 
 /media/:mediaId/vocab	*for Vocab - Read Index and Create*
 
-/media/:mediaId/vocab/:vocabId	*for Vocab - Read Show, Update, and Delete*
+/media/:mediaId/vocab/	*for Vocab - Read Show, Update, and Delete*
 
 
 
-| Component     | Priority| Estimated Time  | Time Invetsted  |Actual Time |
+| Component     | Priority| Estimated Time  | Time Invested  |Actual Time |
 | ------------- |:-------------:| -----:| -----:| -----:|
-| Adding form for Vocab| H |3.5hrs  |  |  |
-| Auth| H | 6hrs   |  |  |
-| Adding form for media| H     | 3.5hrs    |  |  |
-| Design| M     | 4hrs    |  |  |
+| Adding form for Vocab| H |3.5hrs  | 3hrs | 3hrs |
+| Auth| H | 6hrs   | 6hrs | 6hrs |
+| Adding form for media| H     | 3.5hrs    | 3hrs | 1hr |
+| Design| M     | 4hrs    |  | 16hrs |
+
+## Issues and Resolutions
+
+- User would not stay logged in while navigating site.
+Created handleVerify function to maintain current user.
+
+- Edit/Update Vehicle Form did not import current state to prepopulate form and make it easier to edit. 
+The setEdit function needed to be moved out of the Edit Vehicle page; from App.js it needed to be called in the Vehicle Page render and component, specifically in the onClick of the Edit button.
+
+- Edit/Update initially didn't work for several days because the function setEdit was incorrectly being used as the function, and then props and state weren't handled correctly.

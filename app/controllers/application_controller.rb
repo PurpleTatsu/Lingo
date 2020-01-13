@@ -11,6 +11,8 @@ class ApplicationController < ActionController::API
   def decode(token)
     decoded = JWT.decode(token, SECRET_KEY)[0]
     HashWithIndifferentAccess.new decoded
+    # HashWithIndifferentAccess.new(decoded[0])
+
   end
 
   def authorize_request

@@ -33,7 +33,6 @@ class FlashcardsController < ApplicationController
 
   # PATCH/PUT /flashcards/1
   def update
-    byebug
     if @flashcard.update(flashcard_params)
       render json: @flashcard
     else

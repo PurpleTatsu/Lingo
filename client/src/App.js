@@ -43,6 +43,7 @@ class App extends Component {
         vocab3: "",
         description: "",
       },
+      authError: null
     };
     this.baseState = this.state
   }
@@ -182,13 +183,26 @@ class App extends Component {
   handleLogin = async () => {
     const currentUser = await loginUser(this.state.authFormData);
     this.setState({ currentUser });
-    this.props.history.push('/')
+    if (currentUser.error) {
+      this.setState({
+        authError: currentUser.error
+      })
+    } else {
+      this.setState({ currentUser });
+      this.props.history.push('/')
+    }
   }
 
   handleRegister = async (e) => {
     e.preventDefault();
     const currentUser = await registerUser(this.state.authFormData);
-    this.setState({ currentUser });
+    if (currentUser.error) {
+      this.setState({
+        authError: currentUser.error
+      })
+    } else {
+      this.setState({ currentUser });
+    }
   }
   handleVerify = async () => {
     const currentUser = await verifyUser();
@@ -226,11 +240,13 @@ class App extends Component {
         />
         <Route exact path="/login" render={() => (
           <LoginForm
+            authError={this.state.authError}
             handleLogin={this.handleLogin}
             handleChange={this.authHandleChange}
             formData={this.state.authFormData} />)} />
         <Route exact path="/register" render={() => (
           <RegisterForm
+            authError={this.state.authError}
             handleRegister={this.handleRegister}
             handleChange={this.authHandleChange}
             formData={this.state.authFormData} />)} />
@@ -324,10 +340,10 @@ class App extends Component {
         <Route
           exact path="/vehicles/languages"
           render={(props) => {
-           
+
             return <TvShows
-              
-              
+
+
             />
           }}
         />

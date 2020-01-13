@@ -4,7 +4,8 @@ header{
   display: flex;
   color: white;
   justify-content: space-evenly;
-  
+  position: sticky;
+  top: 0;
 }
 
 #hamburger{
@@ -274,6 +275,11 @@ body{
 
 form p{
   margin: 2px;
+}
+
+.error{
+text-align: center;
+text-transform: uppercase;
 }
 
 .flashcard-container{

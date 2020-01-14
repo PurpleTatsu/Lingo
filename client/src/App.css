@@ -87,11 +87,10 @@ header h2{
 
 header a, header h1{
   margin: auto;
+
 }
 
-header a:hover{
-  color:#4076B6;
-}
+
 
 
 header p{
@@ -103,8 +102,15 @@ header p{
 header a{
   color:white;
   text-decoration: none;
+  transition: all 0.1s ease-in-out 0s;
+
 }
 
+
+header a:hover{
+  color:#1957E6;
+  
+}
 body{
   background: #0D2D77;
   color: white;
@@ -170,6 +176,10 @@ body{
 .vehicle-card h3, h2{
   margin: 2px;
 }
+
+/* .vehicle-card h2{
+  height: 3em;
+} */
 
 .edit-vehicle{
   width: 100%;

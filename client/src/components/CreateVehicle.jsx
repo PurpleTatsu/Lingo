@@ -38,6 +38,13 @@ function CreateVehicle(props) {
           name="genre"
           placeholder="genre"
           value={props.vehicleForm.genre}
+            onChange={props.handleVehicleFormChange} />
+          
+          <input
+          type="text"
+          name="category"
+          placeholder="category: Book, TV Show, etc"
+          value={props.vehicleForm.category}
           onChange={props.handleVehicleFormChange} />
 
 

@@ -16,12 +16,17 @@ User creates a Media form
 User adds, edits, and deletes vocab from Media
 
 **POST MVP**
+User Profile Page - view user's created media, change password
 
-VoiceRSS text-to-voice API call to aid pronunciation 
+Password Reset/Forgot My Password
 
-Search bar
+Search/Filter
+
+Clone Media pages
 
 Click-and-drag vocab
+
+VoiceRSS text-to-voice API call to aid pronunciation 
 
 ## Entity Relationship Diagram (ERD) 
 ![ERD](https://github.com/PurpleTatsu/GA-Project-4/blob/master/P4.png)

@@ -36,9 +36,10 @@ function VehiclesView(props) {
                   props.history.push(`/vehicles/${vehicle.id}`);
                   window.scrollTo(0, 0);
                 }}>
+                <h2>{vehicle.title}</h2>
                 <h3>{vehicle.language}</h3>
                 <img alt={vehicle.title} src={vehicle.image} />
-                <h3>{vehicle.title}</h3>
+                <h3>{vehicle.category}</h3>
               </div>
             ))}
         </div>

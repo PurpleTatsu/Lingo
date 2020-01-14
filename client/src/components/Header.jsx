@@ -5,9 +5,9 @@ export default function Header(props) {
   return (
     <header>
       <h1><Link to='/' onClick={props.resetForm}><img src="https://github.com/PurpleTatsu/P4-Flashcards/blob/master/client/src/images/lingo%20logo.png?raw=true" className="lingo-logo" alt="lingo-logo" /></Link></h1>
-      <h2 title="Coming Soon!">Books</h2>
-      <h2 title="Coming Soon!">Movies</h2>
-      <h2 title="Coming Soon!">TV Shows</h2>
+      <Link to="books"><h2>Books</h2></Link>
+      <Link to="/movies"><h2>Movies</h2></Link>
+      <Link to="/tv-shows"><h2>TV Shows</h2></Link>
       <div>
         {
           props.currentUser

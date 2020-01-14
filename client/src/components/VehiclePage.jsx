@@ -42,6 +42,7 @@ class VehiclesPage extends Component {
                   <div className="vehicle-info">
                     <h3>{vehicle.genre}</h3>
                     <h3>{vehicle.language}</h3>
+                    <h3>{vehicle.category}</h3>
                     <h1>{vehicle.title}</h1>
 
                     {

@@ -1,17 +1,16 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-function TvShows(props) {
+function Books(props) {
 
   return (
     <div className="page-topper">
 
-      <div className="show-container">
+      <div className="book-container">
 
-        
-        <div id="shows">
+        <div id="books">
           {
-            props.vehicles.filter(vehicle=> vehicle.category==="TV Show").map(vehicle=>
+            props.vehicles.filter(vehicle=> vehicle.category==="Book").map(vehicle=>
          
 
               <div
@@ -36,4 +35,4 @@ function TvShows(props) {
   )
 }
 
-export default withRouter(TvShows)
+export default withRouter(Books)

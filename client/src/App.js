@@ -16,7 +16,10 @@ import { createFlashcard, readAllFlashcards, destroyFlashcard } from './services
 import './App.css';
 import CreateFlashcard from './components/CreateFlashcard';
 import SideBar from "./components/Sidebar";
+
 import TvShows from './components/TvShows';
+import Books from './components/Books';
+import Movies from './components/Movies';
 
 
 class App extends Component {
@@ -28,7 +31,8 @@ class App extends Component {
         title: "",
         image: "",
         genre: "",
-        language: ""
+        language: "",
+        category: ""
       },
       currentUser: null,
       authFormData: {
@@ -123,13 +127,14 @@ class App extends Component {
   setEdit = async (id) => {
     const vehicle = await this.state.vehicles.find(vehicle => vehicle.id === parseInt(id))
 
-    const { title, image, genre, language } = vehicle;
+    const { title, image, genre, language, category } = vehicle;
     this.setState({
       vehicleForm: {
         title,
         image,
         genre,
         language,
+        category,
       }
     });
   }
@@ -233,6 +238,8 @@ class App extends Component {
       <div className="App" >
         <SideBar pageWrapId={"page-wrap"} outerContainerId={"App-sidebar"} />
 
+
+
         <Header
           handleLoginButton={this.handleLoginButton}
           handleLogout={this.handleLogout}
@@ -335,18 +342,26 @@ class App extends Component {
             )}
           />}
 
+        {/* filtered views */}
 
+        <Route exact path="/tv-shows" render={() => (
+          <TvShows
+            vehicles={this.state.vehicles}
+          />
+        )} />
 
-        <Route
-          exact path="/vehicles/languages"
-          render={(props) => {
+        <Route exact path="/books" render={() => (
+          <Books
+            vehicles={this.state.vehicles}
+          />
+        )} />
 
-            return <TvShows
+        <Route exact path="/movies" render={() => (
+          <Movies
+            vehicles={this.state.vehicles}
+          />
+        )} />
 
-
-            />
-          }}
-        />
 
         <footer>
 

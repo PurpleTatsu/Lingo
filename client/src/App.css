@@ -6,6 +6,7 @@ header{
   justify-content: space-evenly;
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 
 #hamburger{
@@ -84,9 +85,14 @@ header h2{
   font-size: 1em;
 }
 
-header h2, header h1{
+header a, header h1{
   margin: auto;
 }
+
+header a:hover{
+  color:#4076B6;
+}
+
 
 header p{
   margin-top:auto;
@@ -126,7 +132,7 @@ body{
 
 .vehicle-card{
   width: 300px; 
-  height: 250px;
+  /* height: 250px; */
   text-align: center;
   margin: 0;
   object-fit: cover;
@@ -140,19 +146,28 @@ body{
   width: 300px;
   height: 200px;
   border-radius: 4px;
+  -webkit-transform: transform .5s ease-in-out;
+  -webkit-transition: transform .5s ease-in-out;
+  -moz-transform: transform .5s ease-in-out;
+  -moz-transition: transform .5s ease-in-out;
+  transition: transform .5s ease-in-out;
+  transform: transform .5s ease-in-out;
+  overflow: hidden;
+  transform-origin: bottom center;
+
 }
 
+
+
 .vehicle-card img:hover{
-  -webkit-transform: scale(1.1,1.1);
-  transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
   border-radius: 4px;
-  transform-origin: bottom center;
-  transition: transform .1s ease-out;
   overflow: hidden;  
 }
 
 
-.vehicle-card h3{
+.vehicle-card h3, h2{
   margin: 2px;
 }
 
@@ -435,6 +450,12 @@ transition: all 0.3s ease-in-out 0s;
   background: #0B3680;
   transition: all 0.3s ease-in-out 0s;
 }
+#shows, #books, #movies{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 
 header button{
   cursor: pointer;

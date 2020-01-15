@@ -5,7 +5,9 @@ function Movies(props){
   return(
     <div className="page-topper">
 
-    <div className="movie-container">
+      <div className="movie-container">
+        
+    <h1 className="container-title">Movies</h1>
 
       <div id="movies">
         {

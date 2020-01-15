@@ -22,6 +22,7 @@ const LoginForm = (props) => {
           <button id="login-button">Login</button>
           <Link to="/register"><button className="register">Register</button></Link>
         </form>
+        {/* <Link to="/forgot-password"><p>Forgot Password?</p></Link> */}
       </div>
       {props.authError && <h3 className="error">{props.authError}</h3>}
     </div>

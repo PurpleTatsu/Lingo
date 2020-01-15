@@ -8,6 +8,8 @@ function Books(props) {
 
       <div className="book-container">
 
+      <h1 className="container-title">Books</h1>
+
         <div id="books">
           {
             props.vehicles.filter(vehicle=> vehicle.category==="Book").map(vehicle=>

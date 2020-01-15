@@ -13,8 +13,8 @@ export default function Header(props) {
           props.currentUser
             ?
             <>
-              <p>{props.currentUser.username}</p>
-              <button onClick={props.handleLogout}>logout</button>
+              <Link to="/profile"><p>{props.currentUser.username}</p></Link>
+              <button onClick={props.handleLogout}>Logout</button>
             </>
             :
             <button id="login-button" onClick={props.handleLoginButton}>Login/register</button>

@@ -16,6 +16,8 @@ import { createFlashcard, readAllFlashcards, destroyFlashcard } from './services
 import './App.css';
 import CreateFlashcard from './components/CreateFlashcard';
 import SideBar from "./components/Sidebar";
+import CurrentUserProfile from "./components/CurrentUserProfile";
+// import ForgotPassword from "./components/ForgotPassword";
 
 import TvShows from './components/TvShows';
 import Books from './components/Books';
@@ -342,6 +344,12 @@ class App extends Component {
             )}
           />}
 
+        <Route exact path="/profile" render={() => (
+          <CurrentUserProfile
+          currentUser={this.state.currentUser}
+          email={this.state.email}
+          />
+        )} />
         {/* filtered views */}
 
         <Route exact path="/tv-shows" render={() => (
@@ -361,6 +369,12 @@ class App extends Component {
             vehicles={this.state.vehicles}
           />
         )} />
+
+        {/* <Route exact path="/forgot-password" render={() => (
+          <ForgotPassword
+            handleChange={}
+          />
+        )} /> */}
 
 
         <footer>

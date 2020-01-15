@@ -97,6 +97,8 @@ header p{
   margin-top:auto;
   margin-bottom: 0;
   text-align: center;
+  border: 1px solid white;
+
 }
 
 header a{
@@ -276,6 +278,13 @@ body{
 
 .auth-container{
   text-align: center;
+}
+.auth-container a p{
+  color:white;  
+  border: 1px solid white;
+}
+.auth-container a p:hover{
+  color:black;  
 }
 
 .auth-container button{
@@ -460,6 +469,11 @@ transition: all 0.3s ease-in-out 0s;
   background: #0B3680;
   transition: all 0.3s ease-in-out 0s;
 }
+
+.container-title{
+  text-align: center;
+}
+
 #shows, #books, #movies{
   display: flex;
   flex-wrap: wrap;

@@ -391,7 +391,7 @@ class App extends Component {
             <div>
               <a href="https://github.com/PurpleTatsu/Lingo" target="_blank" >
                 <img id="white" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" alt="github" /> </a>
-              <p>© 2019 Katie Gray</p>
+              <p><a href="mailto:katiepgray@gmail.com" target="_blank">© 2019 Katie Gray</a></p>
             </div>
           </div>
           <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a>

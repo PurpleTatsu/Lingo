@@ -15,11 +15,12 @@ function CurrentUserProfile(props) {
 
       
    
-              <p>{props.currentUser.username}</p>
+              <h3>{props.currentUser.username}</h3>
               <p>{props.currentUser.email}</p>
+          <h3>More coming soon!</h3>
 
 
-    </div>
+          </div>
     </div>
     </div>
     </div>

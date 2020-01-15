@@ -97,7 +97,6 @@ header p{
   margin-top:auto;
   margin-bottom: 0;
   text-align: center;
-  border: 1px solid white;
 
 }
 
@@ -257,6 +256,10 @@ body{
   flex-direction: column;
   text-align: center;
   text-transform: capitalize;
+}
+
+.vehicle-info p{
+  text-transform: lowercase;
 }
 
 .vehicle-info h1{

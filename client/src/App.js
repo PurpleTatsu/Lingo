@@ -67,10 +67,7 @@ class App extends Component {
   }
 
 
-  resetForm = () => {
-    this.setState(this.baseState)
-  }
-
+ 
 
   /////// Read ///////
   getVehicles = async () => {
@@ -154,15 +151,13 @@ class App extends Component {
   }
 
 
-  // handleCancelVehicleClick = (id) => { //returns undefined object
-  //   this.setState((prevState) => ({ "vehicleForm": !prevState.vehicleForm }));
-  //   this.props.history.push(`/vehicles/${id}`)
-
-
-  // }
-  // handleCancelFlashcardClick = () => {
-  //   this.setState((prevState) => ({ "flashcardForm": !prevState.flashcardForm }));
-  // }
+ 
+resetForm = () => {
+  this.setState(this.baseState);
+  this.props.history.goBack();
+}
+  
+componentDidUpdate
 
 
   /////// Delete ///////

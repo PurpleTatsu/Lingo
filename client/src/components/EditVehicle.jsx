@@ -40,10 +40,17 @@ function EditVehicle(props) {
           placeholder="genre"
           value={props.vehicleForm.genre}
           onChange={props.handleVehicleFormChange} />
+       
+        <input
+          type="text"
+          name="category"
+          placeholder="category: Book, TV Show, etc"
+          value={props.vehicleForm.category}
+          onChange={props.handleVehicleFormChange} />
 
         <button>Submit</button>
-        <button onClick={props.resetForm}>Cancel</button>
       </form>
+        <button className="resetForm" onClick={props.resetForm}>Cancel</button>
     </div>
   )
 }

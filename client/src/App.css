@@ -6,6 +6,7 @@ header{
   justify-content: space-evenly;
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 
 #hamburger{
@@ -72,9 +73,9 @@ footer img:hover{
   width: auto;
 }
 
-.lingo-logo:hover{
+/* .lingo-logo:hover{
 border: 1px solid rgba(255,255,255,0.1)
-}
+} */
 
 header div{
   margin: 0 auto;
@@ -84,21 +85,33 @@ header h2{
   font-size: 1em;
 }
 
-header h2, header h1{
+header a, header h1{
   margin: auto;
+
 }
+
+
+
 
 header p{
   margin-top:auto;
   margin-bottom: 0;
   text-align: center;
+
 }
 
 header a{
   color:white;
   text-decoration: none;
+  transition: all 0.1s ease-in-out 0s;
+
 }
 
+
+header a:hover{
+  color:#1957E6;
+  
+}
 body{
   background: #0D2D77;
   color: white;
@@ -126,7 +139,7 @@ body{
 
 .vehicle-card{
   width: 300px; 
-  height: 250px;
+  /* height: 250px; */
   text-align: center;
   margin: 0;
   object-fit: cover;
@@ -140,21 +153,34 @@ body{
   width: 300px;
   height: 200px;
   border-radius: 4px;
+  -webkit-transform: transform .5s ease-in-out;
+  -webkit-transition: transform .5s ease-in-out;
+  -moz-transform: transform .5s ease-in-out;
+  -moz-transition: transform .5s ease-in-out;
+  transition: transform .5s ease-in-out;
+  transform: transform .5s ease-in-out;
+  overflow: hidden;
+  transform-origin: bottom center;
+
 }
 
+
+
 .vehicle-card img:hover{
-  -webkit-transform: scale(1.1,1.1);
-  transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
   border-radius: 4px;
-  transform-origin: bottom center;
-  transition: transform .1s ease-out;
   overflow: hidden;  
 }
 
 
-.vehicle-card h3{
+.vehicle-card h3, h2{
   margin: 2px;
 }
+
+/* .vehicle-card h2{
+  height: 3em;
+} */
 
 .edit-vehicle{
   width: 100%;
@@ -232,6 +258,10 @@ body{
   text-transform: capitalize;
 }
 
+.vehicle-info p{
+  text-transform: lowercase;
+}
+
 .vehicle-info h1{
   font-size: 2.5em;
   margin: 0 auto;
@@ -251,6 +281,13 @@ body{
 
 .auth-container{
   text-align: center;
+}
+.auth-container a p{
+  color:white;  
+  border: 1px solid white;
+}
+.auth-container a p:hover{
+  color:black;  
 }
 
 .auth-container button{
@@ -435,6 +472,17 @@ transition: all 0.3s ease-in-out 0s;
   background: #0B3680;
   transition: all 0.3s ease-in-out 0s;
 }
+
+.container-title{
+  text-align: center;
+}
+
+#shows, #books, #movies{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 
 header button{
   cursor: pointer;

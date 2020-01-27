@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  # get 'password_resets/new'
   post '/auth/login', to: 'authentication#login'
   get '/auth/verify', to: 'authentication#verify'
   
   resources :users
+  resources :password_resets
+
 
   resources :vehicles do
     resources :flashcards

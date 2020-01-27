@@ -8,7 +8,9 @@ const PasswordReset = (props) => {
 
 
 
-  {/* <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+      <h1>Reset Password</h1>
+{/* 
+<%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
   <% if @user.errors.any? %>
     <div class='error_messages'>
       <h2>Form is invalid</h2>
@@ -18,32 +20,40 @@ const PasswordReset = (props) => {
         <% end %>
       </ul>
     </div>
-  <% end %> */}
+  <% end %>
+
+  <div class='field'>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div class='field'>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class='actions'><%= f.submit 'Update password' %></div>
+<% end %> */}
 
 
 
-      <hr />
-        <form onSubmit={props.resetPassword} >
-          
-          <p>Password:</p>
+      <form onSubmit={props.resetPassword} >
+
+        <p>Password:</p>
         <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
-          <p>Confirm Password:</p>
+        <p>Confirm Password:</p>
         <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
-        
-        <hr />
-        
-          <button>Update</button>
-        </form>
-      
+
+        <button>Update</button>
+      </form>
 
 
 
 
 
 
-</div>
+
+    </div>
   )
 }
 
 export default PasswordReset
-  
+

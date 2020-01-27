@@ -50,6 +50,8 @@ function CreateVehicle(props) {
 
         <input className="create-button" type="submit" value="Submit" />
       </form>
+      <button className="resetForm" onClick={props.resetForm}>Cancel</button>
+
     </div >
     </div >
   )

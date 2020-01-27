@@ -73,9 +73,9 @@ footer img:hover{
   width: auto;
 }
 
-.lingo-logo:hover{
+/* .lingo-logo:hover{
 border: 1px solid rgba(255,255,255,0.1)
-}
+} */
 
 header div{
   margin: 0 auto;
@@ -97,6 +97,7 @@ header p{
   margin-top:auto;
   margin-bottom: 0;
   text-align: center;
+
 }
 
 header a{
@@ -257,6 +258,10 @@ body{
   text-transform: capitalize;
 }
 
+.vehicle-info p{
+  text-transform: lowercase;
+}
+
 .vehicle-info h1{
   font-size: 2.5em;
   margin: 0 auto;
@@ -276,6 +281,13 @@ body{
 
 .auth-container{
   text-align: center;
+}
+.auth-container a p{
+  color:white;  
+  border: 1px solid white;
+}
+.auth-container a p:hover{
+  color:black;  
 }
 
 .auth-container button{
@@ -460,6 +472,11 @@ transition: all 0.3s ease-in-out 0s;
   background: #0B3680;
   transition: all 0.3s ease-in-out 0s;
 }
+
+.container-title{
+  text-align: center;
+}
+
 #shows, #books, #movies{
   display: flex;
   flex-wrap: wrap;

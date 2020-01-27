@@ -8,6 +8,7 @@ function TvShows(props) {
 
       <div className="show-container">
 
+        <h1 className="container-title">TV Shows</h1>
         
         <div id="shows">
           {

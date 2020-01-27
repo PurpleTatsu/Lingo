@@ -16,6 +16,8 @@ import { createFlashcard, readAllFlashcards, destroyFlashcard } from './services
 import './App.css';
 import CreateFlashcard from './components/CreateFlashcard';
 import SideBar from "./components/Sidebar";
+import CurrentUserProfile from "./components/CurrentUserProfile";
+// import ForgotPassword from "./components/ForgotPassword";
 
 import TvShows from './components/TvShows';
 import Books from './components/Books';
@@ -64,11 +66,12 @@ class App extends Component {
     }
   }
 
+  ///
 
-  resetForm = () => {
-    this.setState(this.baseState)
-  }
 
+  ///
+
+ 
 
   /////// Read ///////
   getVehicles = async () => {
@@ -152,15 +155,13 @@ class App extends Component {
   }
 
 
-  // handleCancelVehicleClick = (id) => { //returns undefined object
-  //   this.setState((prevState) => ({ "vehicleForm": !prevState.vehicleForm }));
-  //   this.props.history.push(`/vehicles/${id}`)
-
-
-  // }
-  // handleCancelFlashcardClick = () => {
-  //   this.setState((prevState) => ({ "flashcardForm": !prevState.flashcardForm }));
-  // }
+ 
+resetForm = () => {
+  this.setState(this.baseState);
+  this.props.history.goBack();
+}
+  
+componentDidUpdate
 
 
   /////// Delete ///////
@@ -342,6 +343,12 @@ class App extends Component {
             )}
           />}
 
+        <Route exact path="/profile" render={() => (
+          <CurrentUserProfile
+          currentUser={this.state.currentUser}
+          email={this.state.email}
+          />
+        )} />
         {/* filtered views */}
 
         <Route exact path="/tv-shows" render={() => (
@@ -362,6 +369,12 @@ class App extends Component {
           />
         )} />
 
+        {/* <Route exact path="/forgot-password" render={() => (
+          <ForgotPassword
+            handleChange={}
+          />
+        )} /> */}
+
 
         <footer>
 
@@ -377,7 +390,7 @@ class App extends Component {
             <div>
               <a href="https://github.com/PurpleTatsu/Lingo" target="_blank" >
                 <img id="white" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-5.png&r=255&g=255&b=255" alt="github" /> </a>
-              <p>© 2019 Katie Gray</p>
+              <p><a href="mailto:katiepgray@gmail.com" target="_blank">© 2019 Katie Gray</a></p>
             </div>
           </div>
           <a href="https://www.vecteezy.com/free-vector/blue-background">Blue Background Vectors by Vecteezy</a>

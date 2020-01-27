@@ -42,10 +42,10 @@ function CreateFlashcard(props) {
 
 
         <input className="create-button" type="submit" value="Submit" />
-        <button onClick={props.resetForm}>Cancel</button>
        
 
       </form>
+        <button className="resetForm" onClick={props.resetForm}>Cancel</button>
       </div >
       </div>
   )

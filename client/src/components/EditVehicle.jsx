@@ -49,8 +49,8 @@ function EditVehicle(props) {
           onChange={props.handleVehicleFormChange} />
 
         <button>Submit</button>
-        <button onClick={props.resetForm}>Cancel</button>
       </form>
+        <button className="resetForm" onClick={props.resetForm}>Cancel</button>
     </div>
   )
 }

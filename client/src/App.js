@@ -71,7 +71,7 @@ class App extends Component {
 
   ///
 
- 
+
 
   /////// Read ///////
   getVehicles = async () => {
@@ -155,13 +155,13 @@ class App extends Component {
   }
 
 
- 
-resetForm = () => {
-  this.setState(this.baseState);
-  this.props.history.goBack();
-}
-  
-componentDidUpdate
+
+  resetForm = () => {
+    this.setState(this.baseState);
+    this.props.history.goBack();
+  }
+
+  componentDidUpdate
 
 
   /////// Delete ///////
@@ -345,12 +345,13 @@ componentDidUpdate
 
         <Route exact path="/profile" render={() => (
           <CurrentUserProfile
-          currentUser={this.state.currentUser}
-          email={this.state.email}
+            currentUser={this.state.currentUser}
+            email={this.state.email}
+            vehicles={this.state.vehicles}
           />
         )} />
-        {/* filtered views */}
 
+        {/* filtered views */}
         <Route exact path="/tv-shows" render={() => (
           <TvShows
             vehicles={this.state.vehicles}

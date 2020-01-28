@@ -22,7 +22,7 @@ export default props => {
       <a className="hamburger-nav" href="/tv-shows">
         TV Shows
       </a>
-      <img src="https://github.com/PurpleTatsu/P4-Flashcards/blob/master/client/src/images/lingo%20logo.png?raw=true" className="lingo-logo" alt="lingo-logo" />
+      <img src="https://github.com/PurpleTatsu/P4-Flashcards/blob/new-master/client/src/images/lingo%20logo.png?raw=true" className="lingo-logo" alt="lingo-logo" />
     </Sidebar>
   );
 };

@@ -8,7 +8,7 @@ function VehiclesView(props) {
 
     <div className="vehicle-container">
       <div className="hero-section">
-        <img className="hero-image" src="https://github.com/PurpleTatsu/P4-Flashcards/blob/master/client/src/images/hero-image.jpg?raw=true" alt="hero-display"/>
+        <img className="hero-image" src="https://github.com/PurpleTatsu/Lingo/blob/new-master/client/src/images/hero-image.jpg?raw=true" alt="hero-display"/>
 
 
 
@@ -18,7 +18,7 @@ function VehiclesView(props) {
         <Link to="/new/vehicle">
         <div className="container">
 
-            <img src="https://github.com/PurpleTatsu/P4-Flashcards/blob/master/client/src/images/PinClipart.com_ground-hog-day-clip_1980971.png?raw=true" alt="loading-circle"/>
+            <img src="https://github.com/PurpleTatsu/Lingo/blob/new-master/client/src/images/PinClipart.com_ground-hog-day-clip_1980971.png?raw=true" alt="loading-circle"/>
             <div className="centered">Add New Media</div>
 
             </div>

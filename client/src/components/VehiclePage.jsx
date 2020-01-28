@@ -48,10 +48,10 @@ class VehiclesPage extends Component {
                     {
                       currentUser && currentUser.id === vehicle.user_id && (
                         <>
-                          <button onClick={() => {
+                          {/* <button onClick={() => {
                             this.props.deleteVehicle(vehicle.id);
                             this.props.history.push(`/`)
-                          }}>Delete</button>
+                          }}>Delete</button> */}
 
                           <button onClick={() => {
                             
